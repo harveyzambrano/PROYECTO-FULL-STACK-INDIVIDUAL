@@ -3,8 +3,9 @@ const { Recipe, Diet } = require("../db");
 const { YOUR_API_KEY } = process.env;
 //const food = require("../../foodComplexSearch.json");
 
-// `https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`
+// `https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`
 //  &addRecipeInformation=true&number=100
+
 
 //*--------------------------------------------------------------------->
 const getApiDBRecipes = async () => {

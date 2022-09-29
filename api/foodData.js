@@ -8861,6 +8861,6 @@ const food = JSON.parse(
   
 
 
-//var foods = [food];
+var foods = [food];
 
 mpdule.export={food};

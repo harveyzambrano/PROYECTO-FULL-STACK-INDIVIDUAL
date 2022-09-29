@@ -26,7 +26,6 @@ const getTypes = async () => {
 
 };
 
-
 module.exports = {
   getTypes,
 };
