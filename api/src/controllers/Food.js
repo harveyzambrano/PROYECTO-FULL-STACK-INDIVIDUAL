@@ -3,15 +3,15 @@ const { Recipe, Diet } = require("../db");
 const { YOUR_API_KEY } = process.env;
 //const food = require("../../foodComplexSearch.json");
 
-// `https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`
-//  &addRecipeInformation=true&number=100
-
+//`https://food-d0a4b-default-rtdb.firebaseio.com/.json`
+//`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
 
 //*--------------------------------------------------------------------->
 const getApiDBRecipes = async () => {
   const apiRecipe = (
     await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
+      `https://food-d0a4b-default-rtdb.firebaseio.com/.json`
+      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
     )
   ).data;
   const apiRecipeData = await apiRecipe.results.map((i) => {
@@ -19,15 +19,15 @@ const getApiDBRecipes = async () => {
       ID: i.id,
       image: i.image,
       name: i.title,
-      diets: i.diets,
+      dietsTypes: i.diets?.map(i => i),
       summary: i.summary,
       healthScore: i.healthScore,
-      steps: i.analyzedInstructions[0]?.steps.map((i) => {
-        return {
-          number: i.number,
-          step: i.step,
-        };
-      }),
+      // steps: i.analyzedInstructions[0]?.steps.map((i) => {
+      //   return {
+      //     number: i.number,
+      //     step: i.step,
+      //   };
+      // }),
       createDB: false,
     };
   });
@@ -35,8 +35,8 @@ const getApiDBRecipes = async () => {
   const getDataBaseRecipes = await Recipe.findAll({
     include: {
       model: Diet,
-      attribute: ["name"],
-      through: { attributes: [] },
+       //attributes: ["name"],
+       through: { attributes: [] },
     },
   });
 
@@ -53,7 +53,7 @@ const getRecipesId = async (Id) => {
         ID: i.id,
         image: i.image,
         name: i.title,
-        diets: i.diets,
+        dietsTypes: i.diets?.map(i => i),
         summary: i.summary,
         healthScore: i.healthScore,
         steps: i.analyzedInstructions[0]?.steps.map((i) => {

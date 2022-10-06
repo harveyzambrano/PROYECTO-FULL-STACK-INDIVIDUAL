@@ -8,22 +8,26 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull: false
+      //allowNull: false
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      //allowNull: false,
     },
     summary: {
       type: DataTypes.STRING,
-      allowNull: false,
+      //allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
+      //allowNull: false,
     },
     healthScore: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      //allowNull: false,
     },
     steps:{
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
     },
     createDB:{
       type: DataTypes.BOOLEAN,

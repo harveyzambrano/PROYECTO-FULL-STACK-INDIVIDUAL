@@ -1,1 +1,4 @@
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
+export const GET_ALL_DIETS = "GET_ALL_DIETS";
+export const POST_RECIPES = "POST_RECIPES";
+export const FILTER_DIETS = "FILTER_DIETS"

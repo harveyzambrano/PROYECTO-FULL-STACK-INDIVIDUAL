@@ -5,6 +5,7 @@ import "./LandingPage.css"
 export default function LandingPage() {
   return(
   <div >
+    <h1 className="Tittle_Henry">Henry Food</h1>
     <h1 className='Title_Welcome'> Welcome to Food</h1>
     <Link to ="/home">      
           <button className="btn-enter">Enter</button>       
