@@ -3,16 +3,15 @@ import './Card.css'
 
 
 
-let Id = 1;
 
 export default function Card({ image, name, dietsTypes }) {  
     return (
-        <div className="Card_Individual">
+        <div className="card-container">
             <div>
-                <h2 className="Tittle-Recipe">{name}</h2>            
+                <h2 className="card-title">{name}</h2>            
             </div>
             <div>
-                <img className="Img-Recipe"  src={image} alt="Not found"/>
+                <img className="image-container"  src={image} alt="Not found"/>
             </div>
             
             <div className="dietcointainer">
@@ -20,7 +19,7 @@ export default function Card({ image, name, dietsTypes }) {
                 {dietsTypes?.map(e => {
                     return (
                     
-                        <h5 className="h_diets" key={Id++}><a className="a_diets">{e}</a></h5>
+                        <h5 className="h_diets" ><a className="a_diets">{e}</a></h5>
                     )
                 })}            
             </div>

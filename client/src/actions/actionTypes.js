@@ -1,4 +1,11 @@
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const GET_ALL_DIETS = "GET_ALL_DIETS";
 export const POST_RECIPES = "POST_RECIPES";
-export const FILTER_DIETS = "FILTER_DIETS"
+
+export const FILTER_CREATED= "FILTER_CREATED";
+export const FILTER_API = "FILTER_API";
+export const FILTER_HEALT_SCORE = "FILTER_HEALT_SCORE";
+
+export const FILTER_DIETS = "FILTER_DIETS";
+export const FILTER_ASC = "FILTER_ASC";
+export const GET_RECIPE_DB ="GET_RECIPE_DB";

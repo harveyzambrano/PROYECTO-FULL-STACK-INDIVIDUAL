@@ -12,10 +12,10 @@ const PR = async(dataPost) => {
    },
    include:{
      model: Diet,
-     attributes: ["name"],
-     through: {
-       attributes: []
-     }
+    //  attributes: ["name"],
+    //  through: {
+    //    attributes: []
+    //  }
    },
  })
  return recetaInf

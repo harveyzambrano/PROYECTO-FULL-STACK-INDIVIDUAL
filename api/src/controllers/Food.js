@@ -33,14 +33,10 @@ const getApiDBRecipes = async () => {
   });
 
   const getDataBaseRecipes = await Recipe.findAll({
-    include: {
-      model: Diet,
-       //attributes: ["name"],
-       through: { attributes: [] },
-    },
+    include:  Diet,    
   });
 
-  const concateApiDataBase = [...apiRecipeData, ...getDataBaseRecipes];
+  const concateApiDataBase = [ ...getDataBaseRecipes,...apiRecipeData];
   return concateApiDataBase;
 };
 
@@ -56,13 +52,14 @@ const getRecipesId = async (Id) => {
         dietsTypes: i.diets?.map(i => i),
         summary: i.summary,
         healthScore: i.healthScore,
+        createDB: false,
         steps: i.analyzedInstructions[0]?.steps.map((i) => {
           return {
             number: i.number,
             step: i.step,
           };
         }),
-        createDB: false,
+        
       };
       return obj;
     })
