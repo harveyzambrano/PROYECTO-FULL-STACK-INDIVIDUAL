@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
-import {Paginado} from "../Paginado/Paginado.jsx";
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import Navbar from '../Navbar/Navbar'
+import { Paginado } from '../Paginado/Paginado.jsx'
+import './Home.css'
 import {
   getApi,
   typeDiet,
@@ -10,82 +11,87 @@ import {
   byOrder,
   byHealthScore,
   getDietas,
-} from "../../actions/index";
+} from '../../actions/index'
 
 const Food = () => {
-  const dispatch = useDispatch();
-  const getApiDb = useSelector((state) => state.recipes);
-  const allRecipes = useSelector((state) => state.allrecipes);
-  const SelectDietas = useSelector((state)=> state.dietasForm)
-  
+  const dispatch = useDispatch()
+  const getApiDb = useSelector((state) => state.recipes)
+  const allRecipes = useSelector((state) => state.allrecipes)
+  const SelectDietas = useSelector((state) => state.dietasForm)
+
   const [paginaActual, setpaginaActual] = useState(1)
-  const [recipesPerPage, ] = useState(9)
-  const inidiceDelUltimoRecipe= paginaActual * recipesPerPage
-  const indiceDelPrimerRecipe= inidiceDelUltimoRecipe-recipesPerPage
-  const pokemonsActuales= allRecipes.slice(indiceDelPrimerRecipe,inidiceDelUltimoRecipe)
+  const [recipesPerPage] = useState(9)
+  const inidiceDelUltimoRecipe = paginaActual * recipesPerPage
+  const indiceDelPrimerRecipe = inidiceDelUltimoRecipe - recipesPerPage
+  const RecipesActuales = allRecipes.slice(
+    indiceDelPrimerRecipe,
+    inidiceDelUltimoRecipe,
+  )
 
-   const paginado = (pageNumber)=>{
+  const paginado = (pageNumber) => {
     setpaginaActual(pageNumber)
-   }
+  }
 
-
-  const [name, setName] = useState("");
-  const [order, setOrder] = useState("");
+  const [name, setName] = useState('')
+  const [order, setOrder] = useState('')
 
   // const gd = getApiDb.map(
   //   (e) => e.dietsApi
   // );
-  // console.log(gd); 
+  // console.log(gd);
 
   /* const gda = getApiDb.map((e) => e.dietsApi);
   console.log(gda); */
 
   useEffect(() => {
-    dispatch(getApi());
+    dispatch(getApi())
     dispatch(getDietas())
-  }, [dispatch]);
+  }, [dispatch])
 
+  function handleClick(e) {
+    e.preventDefault() // Refresh
+    dispatch(getApi())
+  }
   const handleDiets = (e) => {
-    e.preventDefault();
-    dispatch(typeDiet(e.target.value));
-  };
+    e.preventDefault()
+    dispatch(typeDiet(e.target.value))
+  }
 
   const handleInputChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-  };
+    e.preventDefault()
+    setName(e.target.value)
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(byName(name));
-  };
+    e.preventDefault()
+    dispatch(byName(name))
+    setOrder(e.target.value)
+  }
 
   const handleByOrder = (e) => {
-    e.preventDefault();
-    dispatch(byOrder(e.target.value));
-    setOrder(e.target.value);
-  };
+    e.preventDefault()
+    dispatch(byOrder(e.target.value))
+    setOrder(e.target.value)
+  }
 
   const handleByScore = (e) => {
-    e.preventDefault();
-    dispatch(byHealthScore(e.target.value));
-    setOrder(e.target.value);
-  };
+    e.preventDefault()
+    dispatch(byHealthScore(e.target.value))
+    setOrder(e.target.value)
+  }
 
   return (
-    <> 
+    <>
       <div>
-      <Navbar/>
-        <select className="selects" onChange={(e) => handleDiets(e)}>
-          <option disabled selected>
-            Select By Diet
-          </option>
-                {
-                  SelectDietas.map( i => (
-                    <option value={i.name} key={i.name}>{i.name}</option>
-                  ))
-                }
-        </select>
+        <Navbar />
+        <button
+          className="btn_refresh"
+          onClick={(e) => {
+            handleClick(e)
+          }}
+        >
+          Refresh
+        </button>
       </div>
       <br />
       <div>
@@ -119,37 +125,56 @@ const Food = () => {
           Search
         </button>
       </div>
+      <select className="selects" onChange={(e) => handleDiets(e)}>
+        <option disabled selected>
+          Select By Diet
+        </option>
+        {SelectDietas.map((i) => (
+          <option value={i.name} key={i.name}>
+            {i.name}
+          </option>
+        ))}
+      </select>
+
       <Paginado
-        recipesPerPage = {recipesPerPage}
-        allRecipes = {allRecipes.length}
-        paginado = {paginado}
-        />
-      <div>
-        {pokemonsActuales.map((e) => {
-              return (
-                <div>
-                  <Link to={"/recipes/" + e.id}>
-                  <img src={e.image} alt="" /> <br />
-                  name: {e.name} <br />
-                  {/* summary: {e.summary} <br /> */}
-                  healthScore: {e.healthScore} <br />
-                 {/*  steps: {e.steps} <br /> */}
-                  diets: {e.dietsApi? e.dietsApi : e.diets.map(i=>i.name)} <br />
-                  {/* dishTypes: {e.dishTypes} <br /> */}
-                  </Link>
-                </div>
-              );
-            })
-        }
-      </div>
+        recipesPerPage={recipesPerPage}
+        allRecipes={allRecipes.length}
+        paginado={paginado}
+      />
+
+      {getApiDb.map((e) => {
+        return (
+          <div className="card-container"  >
+           
+              <div>
+                <h2 className="card-title">{e.name} </h2>
+              </div>
+               <Link to={'/recipes/' + e.id}  className='font'>
+              <div>
+                <img className="image-container" src={e.image} alt="" />
+              </div>
+              </Link>
+              <div>
+                <a>HealthScore: {e.healthScore} </a>
+              </div>
+              <div className="dietcointainer">
+                <a className="a_Diets">Diets</a>
+              </div>
+                <h5 className="h_diets" > <a className="a_diets">{e.dietsApi ? e.dietsApi : e.diets.map((i) =>i.name) } </a> </h5>
+              
+              <br />
+            
+          </div>
+        )
+      })}
     </>
-  );
-};
+  )
+}
 
-export default Food;
+export default Food
 
-
-{/* <div>
+{
+  /* <div>
 {getApiDb
   ? getApiDb.map((e) => {
       return (
@@ -167,4 +192,5 @@ export default Food;
       );
     })
   : "No hay food"}
-</div> */}
+</div> */
+}
