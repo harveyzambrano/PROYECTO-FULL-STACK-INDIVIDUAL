@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
+import SearchBar from '../Search/Seach'
+import Card from '../Card/Card'
 import { Paginado } from '../Paginado/Paginado.jsx'
 import './Home.css'
 import {
   getApi,
-  typeDiet,
-  byName,
+  typeDiet, 
   byOrder,
   byHealthScore,
   getDietas,
@@ -16,14 +17,13 @@ import {
 const Food = () => {
   const dispatch = useDispatch()
   const getApiDb = useSelector((state) => state.recipes)
-  const allRecipes = useSelector((state) => state.allrecipes)
   const SelectDietas = useSelector((state) => state.dietasForm)
 
   const [paginaActual, setpaginaActual] = useState(1)
   const [recipesPerPage] = useState(9)
   const inidiceDelUltimoRecipe = paginaActual * recipesPerPage
   const indiceDelPrimerRecipe = inidiceDelUltimoRecipe - recipesPerPage
-  const RecipesActuales = allRecipes.slice(
+  const RecipesActuales = getApiDb.slice(
     indiceDelPrimerRecipe,
     inidiceDelUltimoRecipe,
   )
@@ -32,16 +32,8 @@ const Food = () => {
     setpaginaActual(pageNumber)
   }
 
-  const [name, setName] = useState('')
+ 
   const [order, setOrder] = useState('')
-
-  // const gd = getApiDb.map(
-  //   (e) => e.dietsApi
-  // );
-  // console.log(gd);
-
-  /* const gda = getApiDb.map((e) => e.dietsApi);
-  console.log(gda); */
 
   useEffect(() => {
     dispatch(getApi())
@@ -55,18 +47,7 @@ const Food = () => {
   const handleDiets = (e) => {
     e.preventDefault()
     dispatch(typeDiet(e.target.value))
-  }
-
-  const handleInputChange = (e) => {
-    e.preventDefault()
-    setName(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(byName(name))
-    setOrder(e.target.value)
-  }
+  } 
 
   const handleByOrder = (e) => {
     e.preventDefault()
@@ -84,6 +65,7 @@ const Food = () => {
     <>
       <div>
         <Navbar />
+        <SearchBar/>
         <button
           className="btn_refresh"
           onClick={(e) => {
@@ -112,19 +94,7 @@ const Food = () => {
           <option value="Min">Min</option>
         </select>
       </div>
-      <div>
-        <label>By Name</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Search..."
-          /*  autoComplete="off" */
-          onChange={(e) => handleInputChange(e)}
-        />
-        <button type="submit" onClick={(e) => handleSubmit(e)}>
-          Search
-        </button>
-      </div>
+      
       <select className="selects" onChange={(e) => handleDiets(e)}>
         <option disabled selected>
           Select By Diet
@@ -138,40 +108,61 @@ const Food = () => {
 
       <Paginado
         recipesPerPage={recipesPerPage}
-        allRecipes={allRecipes.length}
+        allRecipes={getApiDb.length}
         paginado={paginado}
       />
 
-      {getApiDb.map((e) => {
+      {RecipesActuales? RecipesActuales.map((e) => {
         return (
           <div className="card-container"  >
-           
-              <div>
-                <h2 className="card-title">{e.name} </h2>
-              </div>
-               <Link to={'/recipes/' + e.id}  className='font'>
-              <div>
-                <img className="image-container" src={e.image} alt="" />
-              </div>
-              </Link>
-              <div>
-                <a>HealthScore: {e.healthScore} </a>
-              </div>
-              <div className="dietcointainer">
-                <a className="a_Diets">Diets</a>
-              </div>
-                <h5 className="h_diets" > <a className="a_diets">{e.dietsApi ? e.dietsApi : e.diets.map((i) =>i.name) } </a> </h5>
-              
-              <br />
+           <Link to={'/recipes/' + e.id}  className='font'>
+            <Card 
             
+                 name={e.name}
+                 image={e.image}  
+                 healthScore={e.healthScore}
+                 dietsApi={e.dietsApi ? e.dietsApi  + "-" : e.diets.map((i) =>i.name + "- ") }
+            />             
+            </Link>
           </div>
         )
-      })}
+      }):
+      "Recipe not found"}
     </>
   )
 }
 
 export default Food
+
+
+// {getApiDb.map((e) => {
+//   return (
+//     <div className="card-container"  >
+//      <Link to={'/recipes/' + e.id}  className='font'>
+//         <div>
+//           <h2 className="card-title">{e.name} </h2>
+//         </div>
+         
+//         <div>
+//           <img className="image-container" src={e.image} alt="" />
+//         </div>
+        
+//         <div>
+//           <a>HealthScore: {e.healthScore} </a>
+//         </div>
+//         <div className="dietcointainer">
+//           <a className="a_Diets">Diets</a>
+//         </div>
+//           <h5 className="h_diets" > <a className="a_diets">{e.dietsApi ? e.dietsApi : e.diets.map((i) =>i.name) } </a> </h5>
+        
+//         <br />
+//       </Link>
+//     </div>
+//   )
+// })}
+
+
+
 
 {
   /* <div>
@@ -194,3 +185,5 @@ export default Food
   : "No hay food"}
 </div> */
 }
+
+

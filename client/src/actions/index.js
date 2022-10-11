@@ -38,11 +38,14 @@
    };
  };
  
- export const byName = (payload) => {
-   return {
-     type: BY_NAME,
-     payload,
-   };
+ export const byName = (name) => {
+   return async (dispatch) =>{
+    const porNombre= await axios.get("http://localhost:3001/recipes?name=" + name);
+    dispatch({
+      type: BY_NAME,
+      payload:porNombre.data
+    })
+   }
  };
  
  export const byOrder = (payload) => {

@@ -18,6 +18,7 @@ router.get("/dbapi", async (req, res) => {
   
       const gApi = getApi.data.results.map((r) => {
         return {
+          id: r.id,
           name: r.title,
           vegetarian: r.vegetarian,
           vegan: r.vegan,

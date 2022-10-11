@@ -35,12 +35,14 @@
   
  }  */
 
- /** ================ CARD =============== **/
- .card-container {
-  text-decoration: none;
-  /* display: flex;
+
+/* display: flex;
   flex-wrap: wrap;
   flex-direction:column; */
+ /** ================ CARD =============== **/
+ /* .card-container {
+  text-decoration: none;
+  
   display: block;
   float: left;
 
@@ -90,6 +92,6 @@
   background-color: rgb(41, 41, 41);
 }
 
-
+ */
 
 

@@ -45,11 +45,11 @@ export default function rootReducer(state = initialState, action) {
         recipes: typeD,
       };
     case BY_NAME:
-      const nameRecipe = state.name;
-      const nReci = nameRecipe.filter((e) => e.name === action.payload);
+      /*const nameRecipe = state.name;
+       const nReci = nameRecipe.filter((e) => e.name === action.payload); */
       return {
         ...state,
-        recipes: nReci,
+        recipes: action.payload,
       };
     case BY_ORDER:
       const orderRecipes =
