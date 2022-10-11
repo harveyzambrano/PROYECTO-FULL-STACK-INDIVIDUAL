@@ -10,25 +10,26 @@ const { YOUR_API_KEY } = process.env;
 const getApiDBRecipes = async () => {
   const apiRecipe = (
     await axios.get(
-      `https://food-d0a4b-default-rtdb.firebaseio.com/.json`
-      //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
+      //`https://food-d0a4b-default-rtdb.firebaseio.com/.json`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
     )
   ).data;
-  const apiRecipeData = await apiRecipe.results.map((i) => {
+  const apiRecipeData = await apiRecipe.results.map((r) => {
     return {
-      ID: i.id,
-      image: i.image,
-      name: i.title,
-      dietsTypes: i.diets?.map(i => i),
-      summary: i.summary,
-      healthScore: i.healthScore,
-      // steps: i.analyzedInstructions[0]?.steps.map((i) => {
-      //   return {
-      //     number: i.number,
-      //     step: i.step,
-      //   };
-      // }),
-      createDB: false,
+      name: r.title,
+      vegetarian: r.vegetarian,
+      vegan: r.vegan,
+      glutenFree: r.glutenFree,
+      dairyFree: r.dairyFree,
+      summary: r.summary,
+      image: r.image,
+      healthScore: r.healthScore,
+      dishTypes: r.dishTypes,
+      dietsApi: r.diets,
+      steps:
+        r.analyzedInstructions[0] && r.analyzedInstructions[0].steps
+          ? r.analyzedInstructions[0].steps.map((e) => e.step).join(" \n")
+          : "",
     };
   });
 
@@ -46,7 +47,7 @@ const getRecipesId = async (Id) => {
     .then((i) => {
       i = i.data;
       let obj = {
-        ID: i.id,
+        id: i.id,
         image: i.image,
         name: i.title,
         dietsTypes: i.diets?.map(i => i),
@@ -65,31 +66,35 @@ const getRecipesId = async (Id) => {
     })
     .catch(() => null);
 
-  if (res) {
-    //Api
+  if (res) {//Api    
     return res;
-  } else {
-    //DB
-    const food = await Recipe.findAll({
-      where: {
-        name: Id,
-      },
-      inclide: Diet,
-    });
-
-    if (food.length) {
-      return food;
-    } else {
-      return null;
-    }
+  } else {//DB    
+    try {
+          const recipe = await Recipe.findByPk(Id, {
+            include: {
+              model: Diet,
+              attributes: ["name"],
+              through: {
+                attributes: [],
+              },
+            },
+          });
+          return recipe;
+    } catch {
+      return undefined;
+   }
   }
 };
 
 module.exports = {
   getApiDBRecipes,
-  getRecipesId
+  getRecipesId,
+  //getDbId
 };
 
 // } catch (error) {
 //     console.log(error + ",  Error en funcion getAllChar /controlers");
 //   }
+
+
+ 

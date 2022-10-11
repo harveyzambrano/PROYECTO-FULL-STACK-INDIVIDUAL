@@ -1,115 +1,85 @@
-import {
-  FILTER_HEALT_SCORE,
-  GET_ALL_DIETS,
-  GET_ALL_RECIPES,
-  POST_RECIPES,
-  FILTER_DIETS,
-  FILTER_ASC,
-} from "../actions/actionTypes.js";
+ import {
+  GET_FOOD,
+  TYPE_DIET,
+  BY_NAME,
+  BY_ORDER,
+  BY_SCORE,
+  GET_DETAILS,
+  GET_DIETS
+} from "../actions/actionTypes";
 
 const initialState = {
   recipes: [],
-  dietsTypes: [],
-  copyRecipes:[]
+  tipeDiet: [],
+  dietasForm:[],//form
+  allrecipes:[], // paginado
+  name: [],
+  detail:[]
 };
-function rootReducer(state = initialState, action) {
+ 
+export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_ALL_DIETS:
-      return {
-        ...state,
-        dietsTypes: action.payload,
-      };
-    case GET_ALL_RECIPES:
+    case GET_FOOD:
       return {
         ...state,
         recipes: action.payload,
-        allRecipe:action.payload
+        allrecipes: action.payload,
+        tipeDiet: action.payload,
+        name: action.payload,       
       };
-
-    case POST_RECIPES:
+      case GET_DIETS:
       return {
         ...state,
+        dietasForm: action.payload,
+             
       };
-
-    case FILTER_ASC:
-      let sortedArr =
-        action.payload === "asc"
-          ? state.recipes.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.recipes.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+    case TYPE_DIET:
+      const tDietAll = state.tipeDiet;
+      const typeD =
+        action.payload === "all"
+          ? tDietAll
+         /*  : tDietAll.filter((e) => e.dietsApi.includes(action.payload)); */
+        : tDietAll.filter((e) => e.dietsApi? e.dietsApi.includes(action.payload): e.diets.find(i => i.name === action.payload)) 
       return {
         ...state,
-        recipes: sortedArr,
+        recipes: typeD,
       };
-
-    case FILTER_HEALT_SCORE:
-      let sortedHealt =
-        action.payload === "ascH"
-          ? state.recipes.sort(function (a, b) {
-              if (a.healthScore > b.healthScore) {
-                return 1;
-              }
-              if (b.healthScore > a.healthScore) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.recipes.sort(function (a, b) {
-              if (a.healthScore > b.healthScore) {
-                return -1;
-              }
-              if (b.healthScore > a.healthScore) {
-                return 1;
-              }
-              return 0;
-            });
+    case BY_NAME:
+      const nameRecipe = state.name;
+      const nReci = nameRecipe.filter((e) => e.name === action.payload);
       return {
         ...state,
-        recipes: sortedHealt,
+        recipes: nReci,
       };
-
-    case FILTER_DIETS:
-        const recipesDiet = state.copyRecipes
-        const dietFiltered = action.payload === " " ? recipesDiet : recipesDiet.filter(recipe => {
-                let diet = recipe.diets.map(d => d.name)
-            
-                if (diet.includes(action.payload)){
-                    
-                    return recipe
-                }
-                return null
-            })  
-        return {
-            ...state,
-            allRecipes: dietFiltered
-        }
+    case BY_ORDER:
+      const orderRecipes =
+        action.payload === "Asc"
+          ? state.recipes.sort((a, b) => (a.name > b.name ? 1 : -1))
+          : state.recipes.sort((a, b) => (a.name > b.name ? -1 : 1));
+      return {
+        ...state,
+        recipes: orderRecipes,
+      };
+    case BY_SCORE:
+      const orderScore =
+        action.payload === "Max"
+          ? state.recipes.sort((a, b) =>
+              a.healthScore > b.healthScore ? -1 : 1
+            )
+          : state.recipes.sort((a, b) =>
+              a.healthScore > b.healthScore ? 1 : -1
+            );
+      return {
+        ...state,
+        recipes: orderScore,
+      };
     default:
       return state;
+
+      case GET_DETAILS:
+        return{
+          ...state,
+          detail:action.payload
+        }
   }
 }
-export default rootReducer;
-
-// case FILTER_CREATED:
-//     let recipeCreateds = state.recipes;
-//     let acpay = action.payload ==="created"?
-//      recipeCreateds.filter(i => i.createDB === true )
-//     :recipeCreateds.filter(i => i.createDB === false )
-//     return{
-//         ...state,
-//         recipes: acpay
-//     }

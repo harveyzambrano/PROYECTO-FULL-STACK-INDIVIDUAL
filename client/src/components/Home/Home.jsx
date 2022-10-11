@@ -1,160 +1,170 @@
-import React, { useEffect, useState , setOrden } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
-import {getAllRecipes, orderByDiet, orderByName,orderByHealth} from '../../actions/index.js'
-import { Link } from 'react-router-dom'
-import Card from '../Card/Card.jsx'
-import './Home.css'
-import Paginado from '../Paginado/Paginado.jsx'
-import Navbar from '../Navbar/Navbar'
-import loading from '../../Media/capoo-blue.gif'
- 
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import {Paginado} from "../Paginado/Paginado.jsx";
+import {
+  getApi,
+  typeDiet,
+  byName,
+  byOrder,
+  byHealthScore,
+  getDietas,
+} from "../../actions/index";
 
-function Home() {
-  const dispatch = useDispatch() 
-  const allRecipes = useSelector((state) => state.recipes);
-  const allDiets = useSelector((state) => state.diets);
+const Food = () => {
+  const dispatch = useDispatch();
+  const getApiDb = useSelector((state) => state.recipes);
+  const allRecipes = useSelector((state) => state.allrecipes);
+  const SelectDietas = useSelector((state)=> state.dietasForm)
+  
+  const [paginaActual, setpaginaActual] = useState(1)
+  const [recipesPerPage, ] = useState(9)
+  const inidiceDelUltimoRecipe= paginaActual * recipesPerPage
+  const indiceDelPrimerRecipe= inidiceDelUltimoRecipe-recipesPerPage
+  const pokemonsActuales= allRecipes.slice(indiceDelPrimerRecipe,inidiceDelUltimoRecipe)
 
-  const [orden, setOrden] = useState('');
-  const [currentPage, setCurrentPage] = useState(1) //[estado pag actual, setea pag actual]=useState(1: primera pag)                                                    //useSelector , trae todo lo q esta en el state.pokemons
-  const [recipesPerPage, setRecipesPerPage] = useState(9) //12  recetas por pagina
-  const indexOfLasteRecipe = currentPage * recipesPerPage //12
-  const indexOfFirstRecipe = indexOfLasteRecipe - recipesPerPage //0
-  const currentRecipe = allRecipes.slice(indexOfFirstRecipe, indexOfLasteRecipe) //guarda pokemons por pagina
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+   const paginado = (pageNumber)=>{
+    setpaginaActual(pageNumber)
+   }
+
+
+  const [name, setName] = useState("");
+  const [order, setOrder] = useState("");
+
+  // const gd = getApiDb.map(
+  //   (e) => e.dietsApi
+  // );
+  // console.log(gd); 
+
+  /* const gda = getApiDb.map((e) => e.dietsApi);
+  console.log(gda); */
 
   useEffect(() => {
-    dispatch(getAllRecipes())    
-  }, [dispatch])
+    dispatch(getApi());
+    dispatch(getDietas())
+  }, [dispatch]);
 
-  function handleClick(e) {
-    e.preventDefault()
-    dispatch(getAllRecipes())
-  }
+  const handleDiets = (e) => {
+    e.preventDefault();
+    dispatch(typeDiet(e.target.value));
+  };
 
-  function handleSort(e){
+  const handleInputChange = (e) => {
     e.preventDefault();
-    dispatch(orderByName(e.target.value))
-    setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`)
-  }
-  function handleHealth(e){
+    setName(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(orderByHealth(e.target.value))
-    setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`)
-  }
-  
- 
-  function handleDiet(e){
+    dispatch(byName(name));
+  };
+
+  const handleByOrder = (e) => {
     e.preventDefault();
-    dispatch(orderByDiet(e.target.value))
-    // setCurrentPage(1);
-    // setOrden(`Ordenado ${e.target.value}`)
-  }
+    dispatch(byOrder(e.target.value));
+    setOrder(e.target.value);
+  };
+
+  const handleByScore = (e) => {
+    e.preventDefault();
+    dispatch(byHealthScore(e.target.value));
+    setOrder(e.target.value);
+  };
+
   return (
-    <div>
-      <Navbar />
-
-      <h1 className="Title-Home">RECIPES</h1>
-      <button className='button_refresh' onClick={handleClick}>Refresh</button>
-
-      <div >
-        <select className='selects'  onChange={(e) => handleDiet(e)}>
-          <option disabled selected>Select By Diet</option>
-          <option value="gluten free">gluten free</option>
-          <option value="ketogenic">ketogenic</option>
-          <option value="vegetarian">vegetarian</option>
-          <option value="lacto vegetarian">lacto vegetarian</option>
-          <option value="ovo vegetarian">ovo vegetarian</option>
-          <option value="vegan">vegan</option>
-          <option value="pescetarian">pescetarian</option>
-          <option value="paleo">paleo</option>
-          <option value="primal">primal</option>
-          <option value="low fodmap">low fodmap</option>
-          <option value="whole 30">whole 30</option>
-        </select>
-        <select onChange={e => handleSort(e)} className='selects' >
-          <option disabled selected>Order</option>
-          <option value="asc">Upward</option>
-          <option value="desc">Falling</option>
-        </select>
-
-        <select onChange={e => handleHealth(e)} className='selects' >
-          <option disabled selected>Order</option>
-          <option value="ascH">Healt Asc</option>
-          <option value="desc">Healt Des</option>
-        </select>
-  
-
-      </div>
-
+    <> 
       <div>
-        <Paginado
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          paginado={paginado}
-          />
-      </div>
-
-      {currentRecipe.length > 0 ? (
-        currentRecipe.map((i) => {
-          return (
-            <div>
-              
-                <Card 
-                name={i.name}
-                image={i.image}                
-                dietsTypes={
-                  i.dietsTypes ? i.dietsTypes : i.allDiets.map((i) => i.name)
+      <Navbar/>
+        <select className="selects" onChange={(e) => handleDiets(e)}>
+          <option disabled selected>
+            Select By Diet
+          </option>
+                {
+                  SelectDietas.map( i => (
+                    <option value={i.name} key={i.name}>{i.name}</option>
+                  ))
                 }
-                />
-              
-              
-            </div>
-          )
-        })
-      ) : (
+        </select>
+      </div>
+      <br />
+      <div>
+        <select onChange={(e) => handleByOrder(e)}>
+          <option disabled selected>
+            Order
+          </option>
+          <option value="Asc">A-Z</option>
+          <option value="Desc">Z-A</option>
+        </select>
+      </div>
+      <div>
+        <select onChange={(e) => handleByScore(e)}>
+          <option disabled selected>
+            Order Score
+          </option>
+          <option value="Max">Max</option>
+          <option value="Min">Min</option>
+        </select>
+      </div>
+      <div>
+        <label>By Name</label>
+        <br />
+        <input
+          type="text"
+          placeholder="Search..."
+          /*  autoComplete="off" */
+          onChange={(e) => handleInputChange(e)}
+        />
+        <button type="submit" onClick={(e) => handleSubmit(e)}>
+          Search
+        </button>
+      </div>
+      <Paginado
+        recipesPerPage = {recipesPerPage}
+        allRecipes = {allRecipes.length}
+        paginado = {paginado}
+        />
+      <div>
+        {pokemonsActuales.map((e) => {
+              return (
+                <div>
+                  <Link to={"/recipes/" + e.id}>
+                  <img src={e.image} alt="" /> <br />
+                  name: {e.name} <br />
+                  {/* summary: {e.summary} <br /> */}
+                  healthScore: {e.healthScore} <br />
+                 {/*  steps: {e.steps} <br /> */}
+                  diets: {e.dietsApi? e.dietsApi : e.diets.map(i=>i.name)} <br />
+                  {/* dishTypes: {e.dishTypes} <br /> */}
+                  </Link>
+                </div>
+              );
+            })
+        }
+      </div>
+    </>
+  );
+};
+
+export default Food;
+
+
+{/* <div>
+{getApiDb
+  ? getApiDb.map((e) => {
+      return (
         <div>
-          <img className="gif" src={loading} />
-          <h3>loading ....</h3>
+          <Link to={"/recipes/" + e.id}>
+          <img src={e.image} alt="" /> <br />
+          name: {e.name} <br />
+          summary: {e.summary} <br /> 
+          healthScore: {e.healthScore} <br />
+          steps: {e.steps} <br /> 
+          diets: {e.dietsApi? e.dietsApi : e.diets.map(i=>i.name)} <br />
+          dishTypes: {e.dishTypes} <br /> 
+          </Link>
         </div>
-      )}
-    </div>
-  )
-}
-
-export default Home
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function handleCreated(e){
-//   e.preventDefault()
-//   dispatch(filterByCreated(e.target.value))
-// }
-
-
-// <select className='selects' onChange={e => handleCreated(e)}>
-// <option disabled selected>Recipes Created</option>       
-// <option value="created">Created</option>
-// <option value="api">Api</option>
-// </select>
-
+      );
+    })
+  : "No hay food"}
+</div> */}

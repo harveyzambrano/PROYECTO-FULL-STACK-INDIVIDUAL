@@ -4,16 +4,17 @@ const { Diet } = require("../db");
 const getTypes = async () => {
   const dietTypes = [
     "gluten free",
+    "dairy free",
     "ketogenic",
     "vegetarian",
-    "lacto vegetarian",
-    "ovo vegetarian",
+    "lacto ovo vegetarian",
     "vegan",
     "pescetarian",
-    "paleo",
+    "paleolithic",
     "primal",
     "low fodmap",
     "whole 30",
+    "fodmap friendly",
   ];
 
   dietTypes.forEach((i) => {

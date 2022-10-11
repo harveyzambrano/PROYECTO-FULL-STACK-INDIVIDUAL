@@ -1,11 +1,9 @@
-export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
-export const GET_ALL_DIETS = "GET_ALL_DIETS";
-export const POST_RECIPES = "POST_RECIPES";
-
-export const FILTER_CREATED= "FILTER_CREATED";
-export const FILTER_API = "FILTER_API";
-export const FILTER_HEALT_SCORE = "FILTER_HEALT_SCORE";
-
-export const FILTER_DIETS = "FILTER_DIETS";
-export const FILTER_ASC = "FILTER_ASC";
-export const GET_RECIPE_DB ="GET_RECIPE_DB";
+export const GET_FOOD = "GET_FOOD";
+export const TYPE_DIET = "TYPE_DIET";
+export const BY_NAME = "BY_NAME";
+export const BY_ORDER = "BY_ORDER";
+export const BY_SCORE = "BY_SCORE";
+export const SOLO_DIETAS = "SOLO_DIETAS";
+export const GET_DETAILS = "GET_DETAILS";
+export const POSTER = "POSTER";
+export const GET_DIETS = "GET_DIETS";

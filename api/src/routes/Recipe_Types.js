@@ -4,7 +4,7 @@ const {getTypes} =require("../controllers/TypeDiets.js");
 
 const router = Router();
 
-router.get("/",async(re,res) => {
+router.get("/",async(req,res) => {
     const typeDiet = await getTypes()
     res.send(typeDiet)
 })

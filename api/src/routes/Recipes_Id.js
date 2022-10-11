@@ -1,16 +1,16 @@
 const { Router } = require("express");
 const { Recipe, Diet } = require("../db");
-const { getRecipesId } = require("../controllers/Food.js");
+const { getRecipesId, getDbId} = require("../controllers/Food.js");
 
 const router = Router();
 
 router.get("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
+    const  id  = req.params.id;
     const ById = await getRecipesId(id);
-    res.json(ById);
+    res.status(200).send(ById)
   } catch (error) {
-    console.log(error + " router.get(id) ->  routes/Recipe_Id.js");
+    console.log(error + "routes/Recipe_Id.js");
   }
 });
 

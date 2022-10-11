@@ -1,29 +1,30 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllDiets, posterRecipes } from "../../actions";
+import { getDietas,posterRecipes} from "../../actions";
 import Navbar from "../Navbar/Navbar" 
 
 function Form(){
     const dispatch = useDispatch()
-    const dietsRoot = useSelector(state => state.dietsTypes)
+    const dietsRoot = useSelector((state) => state.dietasForm)
+    
     const [InputRecipes, setInputRecipe] = useState({        
             image: "",
             name: "",
-            dietsTypes: [],
+            diets: [],
             summary: "",
             healthScore: "",
             steps: "",        
     })
 
     useEffect(() => {
-        dispatch(getAllDiets())
+        dispatch(getDietas())
     },[dispatch])
 
     function handleCheck(e){
         setInputRecipe({
             ...InputRecipes,
-            dietsTypes: [...InputRecipes.dietsTypes,(e.target.value)]// value=input
+            diets: [...InputRecipes.diets,(e.target.value)]// value=input
         })
     }
 
@@ -40,7 +41,7 @@ function Form(){
         setInputRecipe({
             image: "",
             name: "",
-            dietsTypes: [],
+            dietApi: [],
             summary: "",
             healthScore:"",
             steps: "",   
@@ -71,10 +72,10 @@ function Form(){
                     </div>
                 ))
             } 
-             <div><a className="las-a">{InputRecipes.dietsTypes.map(i => i + " ")}</a></div>
-            <button onClick={handleSubmit}>Create</button>
-            </form>
-        </div>
+         {/*      <div><a className="las-a">{InputRecipes.dietasForm.map(i => i + " ")}</a></div> */}
+                  <button onClick={handleSubmit}>Create</button>
+            </form>  
+        </div> 
     )
 }
 

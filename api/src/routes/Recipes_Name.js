@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Recipe, Diet } = require("../db");
+const { Recipe, Diet,Dbapi} = require("../db");
 const { getApiDBRecipes } = require("../controllers/Food.js");
 
 const router = Router();
@@ -7,7 +7,8 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const name = req.query.name;
-    const AllRecipes = await getApiDBRecipes();
+    //const AllRecipes = await getApiDBRecipes();
+    const AllRecipes = await Dbapi.findAll();
     if (name) {
       let recipeQuery = await AllRecipes.filter((i) =>
         i.name.toLowerCase().includes(name.toLowerCase())
