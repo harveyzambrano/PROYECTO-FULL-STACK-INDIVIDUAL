@@ -1,5 +1,6 @@
 import React from "react";
-//import './Card.css'
+import hscore from "../../Media/hscore.png"
+import './Card.css'
 
 
 
@@ -16,13 +17,15 @@ export default function Card({ image, name,healthScore, dietsApi }) {
              <img className="image-container" src={image} alt="" />
            </div>
            
-           <div>
-             <a>HealthScore: {healthScore} </a>
+           <div >
+              <a className="score-content"> <img className="hscore" src={hscore}/> {healthScore} </a>
            </div>
+
+           <a className="a_Diets">Diets</a>
            <div className="dietcointainer">
-             <a className="a_Diets">Diets</a>
-           </div>
+             
              <h5 className="h_diets" > <a className="a_diets">{dietsApi} </a></h5>         
+           </div>
         </div>
     )
 };

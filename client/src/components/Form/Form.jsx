@@ -2,12 +2,23 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDietas,posterRecipes} from "../../actions";
+import "./Form.css"
 import Navbar from "../Navbar/Navbar" 
+
+function validate(InputRecipes) {
+    let errors = {};
+    if(!InputRecipes.name){
+        errors.name = 'Se requiere un Nombre';
+    }else if(!InputRecipes.diets){
+        errors.name = 'Se requieren Seleccionar la Dieta'
+    }
+
+}
 
 function Form(){
     const dispatch = useDispatch()
     const dietsRoot = useSelector((state) => state.dietasForm)
-    
+    const[errors, setErrors] = useState({});
     const [InputRecipes, setInputRecipe] = useState({        
             image: "",
             name: "",
@@ -33,6 +44,11 @@ function Form(){
             ...InputRecipes,
             [e.target.name]:e.target.value
         })
+        setErrors(validate({
+            ...InputRecipes,
+            [e.target.name]: e.target.value
+        }))
+        console.log(InputRecipes)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -51,11 +67,16 @@ function Form(){
     return(
         <div>
             <Navbar/>
-            <form>
+            <h5>Create Recipes</h5>
+            <form className="form-total">
                 <label>Image</label>
                 <input type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
-                <label>Name</label>
-                <input type="text" name="name" value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
+                <div>
+                    <label>Name</label>
+                    <input type="text" name="name" value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
+                  {/*   {(errors.name && <p className="error">{errors.name}</p>)}  */}
+                </div>
+                
                 <label>Summary</label>
                 <input type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
                 <label>Health Score</label>

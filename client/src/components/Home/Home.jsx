@@ -63,11 +63,15 @@ const Food = () => {
 
   return (
     <>
-      <div>
+      <div >
         <Navbar />
+    
+      <div>
         <SearchBar/>
+      </div>
+       
         <button
-          className="btn_refresh"
+          className="button_refresh"
           onClick={(e) => {
             handleClick(e)
           }}
@@ -75,9 +79,9 @@ const Food = () => {
           Refresh
         </button>
       </div>
-      <br />
+       <div className='allselects'>
       <div>
-        <select onChange={(e) => handleByOrder(e)}>
+        <select className="selects" onChange={(e) => handleByOrder(e)}>
           <option disabled selected>
             Order
           </option>
@@ -86,7 +90,7 @@ const Food = () => {
         </select>
       </div>
       <div>
-        <select onChange={(e) => handleByScore(e)}>
+        <select className="selects" onChange={(e) => handleByScore(e)}>
           <option disabled selected>
             Order Score
           </option>
@@ -105,16 +109,17 @@ const Food = () => {
           </option>
         ))}
       </select>
+      </div>
 
       <Paginado
         recipesPerPage={recipesPerPage}
         allRecipes={getApiDb.length}
         paginado={paginado}
       />
-
+  <div  className="card-container-home">
       {RecipesActuales? RecipesActuales.map((e) => {
         return (
-          <div className="card-container"  >
+          <div>
            <Link to={'/recipes/' + e.id}  className='font'>
             <Card 
             
@@ -128,6 +133,7 @@ const Food = () => {
         )
       }):
       "Recipe not found"}
+      </div>
     </>
   )
 }

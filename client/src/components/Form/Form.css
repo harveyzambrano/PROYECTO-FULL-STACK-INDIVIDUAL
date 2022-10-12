@@ -1,0 +1,12 @@
+.form-total{
+    width: 350px;
+    height: 430px;
+    padding: 30px 1px 1px 1px;
+    margin: 30px 1px 1px 80px;;
+    border: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(105, 79, 13);  
+    background-color: rgba(40, 40, 40, 0.6);
+   /*  box-shadow: 3px 5px 5px rgb(255, 255, 255); */
+}
