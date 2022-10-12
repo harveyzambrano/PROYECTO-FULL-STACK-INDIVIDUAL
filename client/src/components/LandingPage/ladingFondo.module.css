@@ -1,0 +1,7 @@
+.imagenfondo{
+    width: 1920px;
+    height: 1900px;
+    position: relative;
+    z-index: 2;
+   background-image: url("../../Media/L.jpg");
+  }

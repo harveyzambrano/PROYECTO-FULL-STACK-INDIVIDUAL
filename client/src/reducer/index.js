@@ -11,7 +11,7 @@
 const initialState = {
   recipes: [],
   tipeDiet: [],
-  dietasForm:[],//form
+  dietasForm:[],//sleccion dietas
   allrecipes:[], // paginado
   name: [],
   detail:[]

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { byName } from "../../actions/index";
+import "./Search.css"
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -20,17 +21,18 @@ const SearchBar = () => {
   return (
     <>
       <div>
-        <input
+        <input className="search-input"
           id="search"
           type="text"
           placeholder="Search..."
           autoComplete="off"
           onChange={(e) => handleInputChange(e)}
         />
+      <button className="button_seach" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+
+
       </div>
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        Search
-      </button>
+      
     </>
   );
 };

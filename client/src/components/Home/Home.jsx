@@ -31,7 +31,6 @@ const Food = () => {
   const paginado = (pageNumber) => {
     setpaginaActual(pageNumber)
   }
-
  
   const [order, setOrder] = useState('')
 
@@ -65,20 +64,12 @@ const Food = () => {
     <>
       <div >
         <Navbar />
-    
-      <div>
-        <SearchBar/>
+        <h1 className='Title-Home'> RECIPES</h1>
+        <div>
+          <SearchBar/>
+        </div>       
       </div>
-       
-        <button
-          className="button_refresh"
-          onClick={(e) => {
-            handleClick(e)
-          }}
-        >
-          Refresh
-        </button>
-      </div>
+
        <div className='allselects'>
       <div>
         <select className="selects" onChange={(e) => handleByOrder(e)}>
@@ -109,6 +100,10 @@ const Food = () => {
           </option>
         ))}
       </select>
+      <button className="button_refresh" onClick={(e) => {handleClick(e)}}>
+          Refresh
+        </button>
+
       </div>
 
       <Paginado
@@ -140,32 +135,7 @@ const Food = () => {
 
 export default Food
 
-
-// {getApiDb.map((e) => {
-//   return (
-//     <div className="card-container"  >
-//      <Link to={'/recipes/' + e.id}  className='font'>
-//         <div>
-//           <h2 className="card-title">{e.name} </h2>
-//         </div>
-         
-//         <div>
-//           <img className="image-container" src={e.image} alt="" />
-//         </div>
-        
-//         <div>
-//           <a>HealthScore: {e.healthScore} </a>
-//         </div>
-//         <div className="dietcointainer">
-//           <a className="a_Diets">Diets</a>
-//         </div>
-//           <h5 className="h_diets" > <a className="a_diets">{e.dietsApi ? e.dietsApi : e.diets.map((i) =>i.name) } </a> </h5>
-        
-//         <br />
-//       </Link>
-//     </div>
-//   )
-// })}
+ 
 
 
 

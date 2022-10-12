@@ -1,4 +1,4 @@
-/* .Title-Home {
+.Title-Home {
   color: #daa520;
   font-size: 46px;   
 }
@@ -8,7 +8,7 @@
   width: 240px;
   height: 200px;
 }
- */ 
+ 
 .button_refresh{
   width: 60px;   
   color:rgb(90, 90, 90); 

@@ -2,32 +2,28 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDietas,posterRecipes} from "../../actions";
+import { validate } from "./Validators";
 import "./Form.css"
 import Navbar from "../Navbar/Navbar" 
-
-function validate(InputRecipes) {
-    let errors = {};
-    if(!InputRecipes.name){
-        errors.name = 'Se requiere un Nombre';
-    }else if(!InputRecipes.diets){
-        errors.name = 'Se requieren Seleccionar la Dieta'
-    }
-
-}
+   
 
 function Form(){
     const dispatch = useDispatch()
     const dietsRoot = useSelector((state) => state.dietasForm)
-    const[errors, setErrors] = useState({});
+    const allRecipes = useSelector((state)=> state.recipes)
+
     const [InputRecipes, setInputRecipe] = useState({        
-            image: "",
-            name: "",
-            diets: [],
-            summary: "",
-            healthScore: "",
-            steps: "",        
+        image: "",
+        name: "",
+        diets: [],
+        summary: "",
+        healthScore: "",
+        steps: "",        
     })
 
+    
+    const[errors, setErrors] = useState({});
+    
     useEffect(() => {
         dispatch(getDietas())
     },[dispatch])
@@ -35,69 +31,142 @@ function Form(){
     function handleCheck(e){
         setInputRecipe({
             ...InputRecipes,
-            diets: [...InputRecipes.diets,(e.target.value)]// value=input
+            diets: [...InputRecipes.diets,(e.target.value)]
         })
+        setErrors(validate({
+            ...InputRecipes,
+            [e.target.name]:e.target.value
+        }))  
     }
 
     function handleChange(e){
         setInputRecipe({
             ...InputRecipes,
             [e.target.name]:e.target.value
-        })
+        })  
         setErrors(validate({
             ...InputRecipes,
-            [e.target.name]: e.target.value
-        }))
+            [e.target.name]:e.target.value
+        }))  
         console.log(InputRecipes)
-    }
+    } 
+ 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(posterRecipes(InputRecipes))
-        alert("Recipe created")
-        setInputRecipe({
+        if (!InputRecipes.name) {
+             alert("Se requiere llenar el Formulario de Creacion")
+        }
+        else{
+            dispatch(posterRecipes(InputRecipes))
+            setErrors(validate(InputRecipes))
+            alert("Recipe created")
+            setInputRecipe({
             image: "",
             name: "",
-            dietApi: [],
+            diets: [],
             summary: "",
             healthScore:"",
             steps: "",   
         })
+        }
+        
     }
 
     return(
         <div>
             <Navbar/>
             <h5>Create Recipes</h5>
-            <form className="form-total">
-                <label>Image</label>
-                <input type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
+            <form className="form-total"  onSubmit={(e) => handleSubmit(e)} >
                 <div>
-                    <label>Name</label>
-                    <input type="text" name="name" value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
-                  {/*   {(errors.name && <p className="error">{errors.name}</p>)}  */}
+                    <label>Image: </label>
+                    <input type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
+                     {(errors.image && <p className="error">{errors.image}</p>)}   
                 </div>
                 
-                <label>Summary</label>
-                <input type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
-                <label>Health Score</label>
-                <input type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
-                <label>Steps</label>
-                <input type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
-           
+                <div>
+                    <label>Name: </label>
+                    <input type="text" name="name"   value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
+                    {(errors.name && <p className="error">{errors.name}</p>)}   
+                </div>
+                <div>
+                    <label>Summary: </label>
+                    <input type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
+                    {(errors.summary && <p className="error">{errors.summary}</p>)}  
 
-            {
+                </div>
+                
+                <div>
+                    <label>Health Score: </label>
+                    <input type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
+                    {(errors.healthScore && <p className="error">{errors.healthScore}</p>)} 
+                </div>   
+            <div>
+                <label>Steps: </label>
+                <input type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
+                {(errors.steps && <p className="error">{errors.steps}</p>)} 
+            </div>
+                 
+            <div>
+                <label>Diets: </label>
+                <select onChange={(e) => handleCheck(e)} >
+                {dietsRoot.map(i => (
+                    <option value={i.id}>{i.name}</option>        
+                ))
+                } 
+            </select>
+            {(errors.diets && <p className="error">{errors.diets}</p>)}     
+            </div>
+              
+
+            <button type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+                      
+           </form>
+
+        <div>
+            <ul>
+                <li>{  InputRecipes.diets.map(i => (
+                  <button>{i}</button>
+                 )) }</li>
+
+            </ul>
+        </div>
+            
+
+
+        </div> 
+    )
+}
+
+export default Form;
+
+
+// function handleChecked(e) {
+//     if (e.target.checked) {
+//         setInputRecipe({
+//             ...InputRecipes,
+//             status: e.target.value
+//         })
+//     }
+// }
+// <select onChange={(e) => handleCheck(e)} >
+// {dietsRoot.map(i => (
+//        <option value={i.name}>{i.name}</option>
+             
+        
+//     ))
+// } 
+// </select>
+//  <ul><li>{InputRecipes.dietsRoot.map(e => e + " ,")}</li></ul>
+
+ {/* {
                 dietsRoot.map(i => (
                     <div>
                         <input key={i.id} onClick={(e) => handleCheck(e)} type={"checkbox"} value={i.id} />
                         <label>{i.name}</label>
                     </div>
                 ))
-            } 
-         {/*      <div><a className="las-a">{InputRecipes.dietasForm.map(i => i + " ")}</a></div> */}
-                  <button onClick={handleSubmit}>Create</button>
-            </form>  
-        </div> 
-    )
-}
+            }  */}
 
-export default Form;
+
+
+
