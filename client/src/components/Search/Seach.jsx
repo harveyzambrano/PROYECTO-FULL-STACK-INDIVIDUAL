@@ -5,6 +5,7 @@ import "./Search.css"
 
 const SearchBar = () => {
   const dispatch = useDispatch();
+
   const [name, setName] = useState("");
 
   const handleInputChange = (e) => {
@@ -16,6 +17,7 @@ const SearchBar = () => {
     e.preventDefault();
     dispatch(byName(name));
     document.getElementById("search").value = "";
+     
   };
 
   return (

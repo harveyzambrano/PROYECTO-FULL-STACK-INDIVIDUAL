@@ -8,11 +8,9 @@ const router = Router();
 router.post("/", async (req, res) => {
   try {
     const resPost = await PR(req.body);
-    //if (resPost) {
+   
       res.status(201).send(resPost);
-    //} else {
-    //  res.status(400).send("Recipe already exists");
-   // }
+   
   } catch (error) {
     console.log(error + " router.post  ->  routes/Recipe_Post.js");
   }

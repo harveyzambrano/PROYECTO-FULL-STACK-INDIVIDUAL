@@ -10,6 +10,6 @@ module.exports = (sequelize) => {
     },
    
   },{
-    timestamps: false // me quita los dos campos de update de la tabla en false, en true no
+    timestamps: false  
   });
 };

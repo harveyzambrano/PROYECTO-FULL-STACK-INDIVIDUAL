@@ -8,7 +8,8 @@
    BY_SCORE,
    GET_DETAILS,
    POSTER,
-   GET_DIETS
+   GET_DIETS,
+   CLEAR
  } from "./actionTypes";
  
  export const getApi = () => {
@@ -85,4 +86,8 @@
     }
   }
  }
- 
+ export const clear =()=>{
+  return{
+    type: CLEAR
+  }
+ } 

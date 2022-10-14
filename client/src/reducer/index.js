@@ -5,7 +5,8 @@
   BY_ORDER,
   BY_SCORE,
   GET_DETAILS,
-  GET_DIETS
+  GET_DIETS,
+  CLEAR
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -73,13 +74,20 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         recipes: orderScore,
       };
-    default:
-      return state;
-
+   
       case GET_DETAILS:
         return{
           ...state,
           detail:action.payload
         }
+
+      case CLEAR:
+        return{
+          ...state,
+          detail: []
+        }
+
+       default:
+      return state;
   }
 }

@@ -7,3 +7,4 @@ export const SOLO_DIETAS = "SOLO_DIETAS";
 export const GET_DETAILS = "GET_DETAILS";
 export const POSTER = "POSTER";
 export const GET_DIETS = "GET_DIETS";
+export const CLEAR = "CLEAR";

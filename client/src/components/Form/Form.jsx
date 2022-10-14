@@ -22,21 +22,24 @@ function Form(){
     })
 
     
-    const[errors, setErrors] = useState({});
+    const[errors, setErrors] = useState({}); 
+
     
-    useEffect(() => {
+    useEffect(() => { 
         dispatch(getDietas())
     },[dispatch])
 
     function handleCheck(e){
+         
         setInputRecipe({
             ...InputRecipes,
-            diets: [...InputRecipes.diets,(e.target.value)]
-        })
+            diets: [...new Set([...InputRecipes.diets,(e.target.value)])]
+        })// Set hace que no se repita la seleccion , los valores
         setErrors(validate({
             ...InputRecipes,
             [e.target.name]:e.target.value
         }))  
+         
     }
 
     function handleChange(e){
@@ -73,10 +76,15 @@ function Form(){
     }
 
     return(
-        <div>
-            <Navbar/>
-            <h5>Create Recipes</h5>
+        <>
+        <Navbar/>
+        
+        <div className="divTodo">
+            
+
+            
             <form className="form-total"  onSubmit={(e) => handleSubmit(e)} >
+            <h5>Create Recipes</h5>
                 <div>
                     <label>Image: </label>
                     <input type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
@@ -118,13 +126,17 @@ function Form(){
             </div>
               
 
-            <button type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+            <button className="bottonCreate" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+
+
+
+
                       
            </form>
 
-        <div>
+        <div className="nameDiets">
             <ul>
-                <li>{  InputRecipes.diets.map(i => (
+                <li className="listNameDiets">{  InputRecipes.diets.map(i => (
                   <button>{i}</button>
                  )) }</li>
 
@@ -134,6 +146,7 @@ function Form(){
 
 
         </div> 
+        </>
     )
 }
 

@@ -42,22 +42,26 @@ const Food = () => {
   function handleClick(e) {
     e.preventDefault() // Refresh
     dispatch(getApi())
+    setpaginaActual(1)
   }
   const handleDiets = (e) => {
     e.preventDefault()
     dispatch(typeDiet(e.target.value))
+    setpaginaActual(1)
   } 
 
   const handleByOrder = (e) => {
     e.preventDefault()
     dispatch(byOrder(e.target.value))
     setOrder(e.target.value)
+    setpaginaActual(1)
   }
 
   const handleByScore = (e) => {
     e.preventDefault()
     dispatch(byHealthScore(e.target.value))
     setOrder(e.target.value)
+    setpaginaActual(1)
   }
 
   return (

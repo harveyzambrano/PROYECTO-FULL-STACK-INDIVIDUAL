@@ -22,7 +22,7 @@ export default function Card({ image, name,healthScore, dietsApi }) {
            </div>
 
            <a className="a_Diets">Diets</a>
-           <div className="dietcointainer">
+           <div className="dietcointainerR">
              
              <h5 className="h_diets" > <a className="a_diets">{dietsApi} </a></h5>         
            </div>
