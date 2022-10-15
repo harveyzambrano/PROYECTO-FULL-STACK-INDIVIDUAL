@@ -7,7 +7,7 @@ export default function LandingPage() {
   return(
   <div className={style.imagenfondo}>
    
-    <h1 className="Tittle_Henry">Henry Food</h1> 
+     {/* <h1 className="Tittle_Henry">Henry Food</h1>  */}
 
     <h1 className='Title_Welcome'> Welcome to Food Recipes</h1>
     <div className="btn-enter">

@@ -10,7 +10,7 @@ export default function Detail() {
   const dispatch = useDispatch()
   let { id } = useParams()
   const recipe = useSelector((state) => state.detail)
- 
+ console.log(recipe)
   //const[ recipe , setStateDetail] = useState([])
   
   useEffect(() => {
@@ -24,23 +24,36 @@ export default function Detail() {
 
   
   return (
-    <div >
+    <div className="detalleAll">
   
       {
         <div className='detail-container'>
-          <h2 className="card-title">{recipe.name}</h2>
-          <img className='imagen' src={recipe.image} />
+          <h2 className="detail-title">{recipe.name}</h2>
+          <img className='imagen-Detail' src={recipe.image} />
 
           <div>
-            <a> <img className="hscore" src={hscore}/> {recipe.healthScore}</a>
+            <a className="score-content"> <img className="imageScore" src={hscore}/> {recipe.healthScore}</a>
           </div>
-          <div>
-               <h4 className='summary'>Summary : {recipe.summary}</h4>
+
+          <a className="a_Diets">Summary</a>
+          <div className="dietcointainer">
+               <p className='summary'> {recipe.summary}</p>
           </div>
+           
+          <a className="a_Diets">Steps</a>
+          <div className="dietcointainer">
+             <a > {recipe.steps}  </a>  
+          </div>
+          
           <a className="a_Diets">Diets</a>
             <div className="dietcointainer">
-              {recipe.diets ? recipe.diets.map(i => i.name): recipe.dietsTypes }
+              {recipe.diets ? recipe.diets.map(i =>" - " + i.name): recipe.dietsTypes }
             </div>
+
+            <a className="a_Diets">dishTypes</a> 
+            <div className="dietcointainer">
+               <a className='dishTypes'> {recipe.dishTypes}</a>
+          </div>  
            
         </div>
       }

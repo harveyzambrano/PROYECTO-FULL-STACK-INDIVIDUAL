@@ -1,104 +1,92 @@
 .detail-container {
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   align-content: center;
-  
-    display: block;
-    float: left;
-    width:600px; 
-    height: 900px;
-    border: 1px solid;
-    border-radius: 10px;
-    border-color: rgb(105, 79, 13);  
-    color: rgb(180, 136, 25);
-    background-color: rgba(40, 40, 40, 0.6);
-    padding: 6px 6px 6px  6px;
-    margin:  10px 10px 0px  10px;
-  }
-  .imagen{
-    width: 100%;
-  }
-  
-  .card-container:hover{
-   transform: scale(1.01);
-  }
-  .card-title {
-    
-    font-size: 14px;
-    padding: 0px 1px 0px 1px;
-    margin:  0px 0px 8px 0px;
-    background-color: rgb(235, 178, 34);
-    border: 1px;
-    border-radius: 4px;
-    color: rgb(20, 20, 20);
-  }
-  .image-container {
-    border-radius: 4px;
-    width: 100%;
-    height: 250px;
-    filter: brightness(70%);
-  }
-  .a_Diets{  
-     font-size: 14px;
-    /* transform: rotate(45deg);
-    writing-mode: vertical-rl;
-    text-orientation:upright; */
-    
-    
-    float:left ;
-    border: 1px;
-    border-style:ridge;
-    border-color: rgba(71, 54, 9, 0.767);  
-    border-radius: 5px;
-    padding: 1px 15px 1px 15px;
-    margin: 10px 0px 0px 0px;
-    background-color: rgb(32, 32, 32);
-    text-transform: 180px;
-  }
-  .dietcointainer{  
-    width: 580px;
-    height: 50px;
-    border: 1px  solid;
-    border-color: rgb(46, 46, 46);
-    border-radius:5px;
-    padding: 0px 0px 0px 0px;
-    margin: 10px 0px 10px 0px;
-    background-color: rgb(41, 41, 41);
-  }
-  .hscore{
-    width: 45px;
-    height:45px;
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-  }
-  .score-content{
-    display: block;
-    float:right;
-    /* border: 1px  solid;
-    padding: 1px 10px 0px 10px;
-    margin: 0px 0px 0px 0px; */
-    border-color: rgb(199, 216, 192);
-    border-radius:5px;
-   
-  }
-   
-  .back {
-    width: 50px;
-    padding: 3px 10px 3px 10px;  
-    margin: 13px 160px 10px 10px;  
-   
-    color: rgb(235, 178, 34);
-    border-radius: 5px;
-    border: 1px solid;
-    background-color: rgb(20, 20, 20);
-  }
-  .back:hover { 
-    
-    border-radius: 5px;
-    border-style: solid;
-    color: rgb(0, 0, 0);
-    background-color: rgb(235, 178, 34);    
-  } 
 
+  width: 600px;
+  height: auto;
+
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: rgb(105, 79, 13);
+  color: rgb(180, 136, 25);
+  background-color: rgba(40, 40, 40, 0.6);
+  padding: 6px 6px 6px 6px;
+  margin: 10px 10px 0px 10px;
+}
  
+
+.card-container:hover {
+  transform: scale(1.01);
+}
+.detail-title {
+ 
+  font-size: 14px;
+  padding: 0px 20% 0px 20%;
+  margin: 5px 0% 8px 0%;
+  background-color: rgb(235, 178, 34);
+  border: 1px;
+  border-radius: 4px;
+  color: rgb(20, 20, 20);
+}
+.image-Detail {  
+  width: 100%;
+  height: 250px;
+  filter: brightness(70%);
+}
+.a_Diets {
+  font-size: 14px;
+
+  float: left;
+  border: 1px;
+  border-style: ridge;
+  border-color: rgba(71, 54, 9, 0.767);
+  border-radius: 5px;
+  padding: 1px 15px 1px 15px;
+  margin: 10px 0px 0px 0px;
+  background-color: rgb(32, 32, 32);
+  text-transform: 180px;
+}
+.dietcointainer {
+  width: 580px;
+  height: auto;
+  border: 1px solid;
+  border-color: rgb(46, 46, 46);
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 10px 0px 10px 0px;
+  background-color: rgb(41, 41, 41);
+}
+.imageScore {
+  width: 35px;
+  height: 35px;
+  padding: 0px 0px 0px 0px;
+  margin: 20px 0px 0px 0px;
+}
+.score-content{
+  display: inline-flex;
+  flex-direction: column;
+  align-items:flex-end;
+  
+  border-color: rgb(199, 216, 192);
+  border-radius:5px;
+ 
+}
+
+.back {
+  width: 50px;
+  padding: 3px 10px 3px 10px;
+  margin: 13px 160px 10px 10px;
+
+  color: rgb(88, 88, 87);
+  border-radius: 5px;
+  border: 1px solid;
+  background-color: rgb(235, 178, 34);
+}
+.back:hover {
+  border-radius: 5px;
+  border-style: solid;
+  color:  rgb(235, 178, 34);
+  background-color: rgb(80, 79, 78);
+}

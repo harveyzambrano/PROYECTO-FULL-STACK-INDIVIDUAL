@@ -1,7 +1,9 @@
 .imagenfondo{
-    width: 1920px;
-    height: 1900px;
-    position: relative;
-    z-index: 2;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
    background-image: url("../../Media/L.jpg");
   }

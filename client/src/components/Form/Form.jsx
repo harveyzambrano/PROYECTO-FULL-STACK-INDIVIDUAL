@@ -79,44 +79,41 @@ function Form(){
         <>
         <Navbar/>
         
-        <div className="divTodo">
-            
-
-            
+        <div className="divTodo">            
             <form className="form-total"  onSubmit={(e) => handleSubmit(e)} >
-            <h5>Create Recipes</h5>
+            <h3>Create Recipes</h3>
                 <div>
                     <label>Image: </label>
-                    <input type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
+                    <input className="inputsForm" type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
                      {(errors.image && <p className="error">{errors.image}</p>)}   
                 </div>
                 
                 <div>
                     <label>Name: </label>
-                    <input type="text" name="name"   value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
+                    <input className="inputsForm" type="text" name="name"   value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
                     {(errors.name && <p className="error">{errors.name}</p>)}   
                 </div>
                 <div>
                     <label>Summary: </label>
-                    <input type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
+                    <input className="inputsForm" type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
                     {(errors.summary && <p className="error">{errors.summary}</p>)}  
 
                 </div>
                 
                 <div>
                     <label>Health Score: </label>
-                    <input type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
+                    <input className="inputsForm" type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
                     {(errors.healthScore && <p className="error">{errors.healthScore}</p>)} 
                 </div>   
             <div>
                 <label>Steps: </label>
-                <input type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
+                <input className="inputsForm" type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
                 {(errors.steps && <p className="error">{errors.steps}</p>)} 
             </div>
                  
             <div>
                 <label>Diets: </label>
-                <select onChange={(e) => handleCheck(e)} >
+                <select className="selectsForm" onChange={(e) => handleCheck(e)} >
                 {dietsRoot.map(i => (
                     <option value={i.id}>{i.name}</option>        
                 ))
@@ -126,7 +123,7 @@ function Form(){
             </div>
               
 
-            <button className="bottonCreate" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+            <button className="create" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
 
 
 

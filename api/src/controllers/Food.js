@@ -21,7 +21,7 @@ const getApiDBRecipes = async () => {
       vegan: r.vegan,
       glutenFree: r.glutenFree,
       dairyFree: r.dairyFree,
-      summary: r.summary,
+      summary: r.summary.replace(/<[^>]*>?/g, ""),
       image: r.image,
       healthScore: r.healthScore,
       dishTypes: r.dishTypes,
@@ -62,15 +62,18 @@ const getRecipesId = async (Id) => {
         image: i.image,
         name: i.title,
         dietsTypes: i.diets?.map(i => i),
-        summary: i.summary,
+        dishTypes:i.dishTypes.map(i => i),
+        summary: i.summary.replace(/<[^>]*>?/g, ""),
         healthScore: i.healthScore,
         createDB: false,
-        steps: i.analyzedInstructions[0]?.steps.map((i) => {
+        steps: i.analyzedInstructions[0].steps.map((i) => i.step),
+        /* steps: i.analyzedInstructions[0].steps.map((i) => {
           return {
             number: i.number,
             step: i.step,
           };
-        }),
+        }), */
+        
         
       };
       return obj;

@@ -69,10 +69,7 @@
 }
 .score-content{
   display: block;
-  float:right;
-  /* border: 1px  solid;
-  padding: 1px 10px 0px 10px;
-  margin: 0px 0px 0px 0px; */
+  float:right; 
   border-color: rgb(199, 216, 192);
   border-radius:5px;
  

@@ -41,8 +41,7 @@ const Food = () => {
 
   function handleClick(e) {
     e.preventDefault() // Refresh
-    dispatch(getApi())
-    setpaginaActual(1)
+    dispatch(getApi()) 
   }
   const handleDiets = (e) => {
     e.preventDefault()
@@ -53,15 +52,13 @@ const Food = () => {
   const handleByOrder = (e) => {
     e.preventDefault()
     dispatch(byOrder(e.target.value))
-    setOrder(e.target.value)
-    setpaginaActual(1)
+    setOrder(e.target.value) 
   }
 
   const handleByScore = (e) => {
     e.preventDefault()
     dispatch(byHealthScore(e.target.value))
-    setOrder(e.target.value)
-    setpaginaActual(1)
+    setOrder(e.target.value)  
   }
 
   return (
