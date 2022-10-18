@@ -11,7 +11,7 @@ import {
   typeDiet, 
   byOrder,
   byHealthScore,
-  getDietas,
+  getDietas,byName
 } from '../../actions/index'
 
 const Food = () => {
@@ -41,7 +41,8 @@ const Food = () => {
 
   function handleClick(e) {
     e.preventDefault() // Refresh
-    dispatch(getApi()) 
+    dispatch(getApi())
+      setpaginaActual(1) 
   }
   const handleDiets = (e) => {
     e.preventDefault()
@@ -53,57 +54,84 @@ const Food = () => {
     e.preventDefault()
     dispatch(byOrder(e.target.value))
     setOrder(e.target.value) 
+    setpaginaActual(1)
   }
 
   const handleByScore = (e) => {
     e.preventDefault()
     dispatch(byHealthScore(e.target.value))
-    setOrder(e.target.value)  
+    setOrder(e.target.value) 
+    setpaginaActual(1) 
   }
+  
+//*-----
+const [name, setName] = useState("");
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+    //setpaginaActual(1)
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(byName(name));
+    document.getElementById("search").value = "";
+    setpaginaActual(1)
+  };
+
+
+
 
   return (
     <>
       <div >
         <Navbar />
         <h1 className='Title-Home'> RECIPES</h1>
-        <div>
-          <SearchBar/>
-        </div>       
+         
+            <div>
+              <input  className="search-input"
+                      id="search"
+                      type="text"
+                      placeholder="Search..."
+                      autoComplete="off"
+                      onChange={(e) => handleInputChange(e)} />
+              <button className="button_seach" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+           </div>
+             
       </div>
 
-       <div className='allselects'>
-      <div>
-        <select className="selects" onChange={(e) => handleByOrder(e)}>
-          <option disabled selected>
-            Order
-          </option>
-          <option value="Asc">A-Z</option>
-          <option value="Desc">Z-A</option>
-        </select>
-      </div>
-      <div>
-        <select className="selects" onChange={(e) => handleByScore(e)}>
-          <option disabled selected>
-            Order Score
-          </option>
-          <option value="Max">Max</option>
-          <option value="Min">Min</option>
-        </select>
-      </div>
-      
-      <select className="selects" onChange={(e) => handleDiets(e)}>
-        <option disabled selected>
-          Select By Diet
-        </option>
-        {SelectDietas.map((i) => (
-          <option value={i.name} key={i.name}>
-            {i.name}
-          </option>
-        ))}
-      </select>
-      <button className="button_refresh" onClick={(e) => {handleClick(e)}}>
-          Refresh
-        </button>
+      <div className='allselects'>
+            <div>
+              <select className="selects" onChange={(e) => handleByOrder(e)}>
+                <option disabled selected>
+                  Order
+                </option>
+                <option value="Asc">A-Z</option>
+                <option value="Desc">Z-A</option>
+              </select>
+            </div>
+            <div>
+              <select className="selects" onChange={(e) => handleByScore(e)}>
+                <option disabled selected>
+                  Order Score
+                </option>
+                <option value="Max">Max</option>
+                <option value="Min">Min</option>
+              </select>
+            </div>
+
+            <select className="selects" onChange={(e) => handleDiets(e)}>
+              <option disabled selected>
+                Select By Diet
+              </option>
+              {SelectDietas.map((i) => (
+                <option value={i.name} key={i.name}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
+            <button className="button_refresh" onClick={(e) => {handleClick(e)}}>
+                Refresh
+              </button>
 
       </div>
 

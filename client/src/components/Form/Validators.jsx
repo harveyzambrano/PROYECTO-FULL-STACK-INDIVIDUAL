@@ -53,9 +53,6 @@ function validate(InputRecipes) {
     //*-----------------------------------
     if (InputRecipes.diets.length < 1) {
         errors.diets = "Seleccione una Dieta"
-    }
-    if (InputRecipes.diets.filter(i => i.name === InputRecipes.name)) {
-        errors.diets = "No debe repetir dietas"
     } 
     
 

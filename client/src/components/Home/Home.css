@@ -41,3 +41,25 @@
   align-content: space-around;
   flex-shrink: 1;
  }  
+
+ /** ================ SEARCH =============== **/  
+ .selects{  
+  color: rgb(235, 178, 34);
+  border-radius: 4px;  
+  background-color:rgb(90, 90, 90); 
+}
+.button_seach{
+  width: 60px;   
+  color:rgb(90, 90, 90); 
+  border-radius: 4px;  
+  background-color: rgb(235, 178, 34);
+}
+.button_seach:hover{
+  width: 60px;   
+  background-color:rgb(90, 90, 90); 
+  color: rgb(235, 178, 34);
+}
+.search-input{
+  color: rgb(235, 178, 34);
+  background-color:rgb(90, 90, 90); 
+}

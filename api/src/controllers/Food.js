@@ -11,7 +11,6 @@ const getApiDBRecipes = async () => {
   try {
     const apiRecipe = 
       await axios.get(
-        //`https://food-d0a4b-default-rtdb.firebaseio.com/.json`
         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
       );
     const apiRecipeData = await apiRecipe.data.results.map((r) => {
@@ -27,10 +26,7 @@ const getApiDBRecipes = async () => {
         healthScore: r.healthScore,
         dishTypes: r.dishTypes,
         dietsApi: r.diets,
-        steps:
-          r.analyzedInstructions[0] && r.analyzedInstructions[0].steps
-            ? r.analyzedInstructions[0].steps.map((e) => e.step).join(" \n")
-            : "",
+        steps: i.analyzedInstructions[0]?.steps.map((i) =>"STEP: "+ i.number+"._ " + i.step),     
       };
     });
 
@@ -76,13 +72,7 @@ const getRecipesId = async (Id) => {
           summary: i.summary.replace(/<[^>]*>?/g, ""),
           healthScore: i.healthScore,
           createDB: false,
-          //steps: i.analyzedInstructions[0].steps.map((i) => i.step),
-           /* steps: i.analyzedInstructions[0].steps.map((i) => {
-          return {
-            number: i.number,
-            step: i.step,
-          };
-        }),  */
+          steps: i.analyzedInstructions[0]?.steps.map((i) =>"STEAP: "+ i.number+"._ " + i.step),          
         };
         return obj;
       })
@@ -121,3 +111,11 @@ module.exports = {
 };
 
 
+
+
+ /* steps: i.analyzedInstructions[0].steps.map((i) => {
+          return {
+            number: i.number,
+            step: i.step,
+          };
+        }),  */

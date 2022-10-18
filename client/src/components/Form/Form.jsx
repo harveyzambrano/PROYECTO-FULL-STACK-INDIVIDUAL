@@ -74,6 +74,13 @@ function Form(){
         }
         
     }
+    
+    const handleDelete = (e) =>{
+        setInputRecipe({
+            ...InputRecipes,
+            diets: InputRecipes.diets.filter(diet => diet !== e)
+        })
+    }
 
     return(
         <>
@@ -115,39 +122,48 @@ function Form(){
                 <label>Diets: </label>
                 <select className="selectsForm" onChange={(e) => handleCheck(e)} >
                 {dietsRoot.map(i => (
-                    <option value={i.id}>{i.name}</option>        
+                    <option value={i.name} key={i.id}>{i.name}</option>        
                 ))
                 } 
             </select>
+           {/*  <ul><li>{InputRecipes.diets.map(e => e + " ,")}</li></ul> */}
             {(errors.diets && <p className="error">{errors.diets}</p>)}     
             </div>
-              
-
             <button className="create" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
 
-
+                
 
 
                       
            </form>
 
-        <div className="nameDiets">
-            <ul>
-                <li className="listNameDiets">{  InputRecipes.diets.map(i => (
-                  <button>{i}</button>
-                 )) }</li>
-
-            </ul>
-        </div>
-            
-
-
+           {InputRecipes.diets.map(e => 
+           <div>
+                <p>{e}</p>
+                <button key={e.id} onClick={() => handleDelete(e)}>x</button>
+           </div>
+           
+           )}
+ 
         </div> 
         </>
     )
 }
 
 export default Form;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // function handleChecked(e) {
