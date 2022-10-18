@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
       res.status(201).send(resPost);
    
   } catch (error) {
-    console.log(error + " router.post  ->  routes/Recipe_Post.js");
+    console.log(error + ">>> routes/Recipe_Post.js");
   }
 });
 

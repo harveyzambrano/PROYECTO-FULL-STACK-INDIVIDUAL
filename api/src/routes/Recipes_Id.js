@@ -6,11 +6,11 @@ const router = Router();
 
 router.get("/:id", async (req, res) => {
   try {
-    const  id  = req.params.id;
+    const  id = req.params.id;
     const ById = await getRecipesId(id);
     res.status(200).send(ById)
   } catch (error) {
-    console.log(error + "routes/Recipe_Id.js");
+    console.log(error + " >>> In router/Recipe_Id.js");
   }
 });
 

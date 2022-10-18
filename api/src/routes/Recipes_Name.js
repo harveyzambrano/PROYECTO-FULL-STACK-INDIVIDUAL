@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const name = req.query.name;
-    //const AllRecipes = await getApiDBRecipes();
+    //const todasRecipe = await getApiDBRecipes(); //sponcular
      const todasRecipe = await DbapiRecipe()
 
     if (name) {
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
       res.status(200).send(todasRecipe);
     }
   } catch (error) {
-    console.log(error + " router.get  ->  routes/Recipe_Name.js");
+    console.log(error + " >>> In router/Recipe_Name.js");
   }
 });
 
