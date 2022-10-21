@@ -10,7 +10,7 @@
   border-radius: 10px;
   border-color: rgb(105, 79, 13);  
   color: rgb(180, 136, 25);
-  background-color: rgba(40, 40, 40, 0.6);
+  background-color: rgba(40, 40, 40, 1);
   padding: 6px 6px 6px  6px;
   margin:  10px 10px 0px  10px;
 }
@@ -34,7 +34,7 @@
   height: 250px;
   filter: brightness(70%);
 }
-.a_Diets{  
+.Diets{  
    font-size: 14px;
   /* transform: rotate(45deg);
   writing-mode: vertical-rl;

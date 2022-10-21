@@ -1,12 +1,30 @@
-
-
-.Title_Welcome{
-  margin-top: 300px;     
-  color: rgb(235, 178, 34);
-  font-size: 50px;
-  display: flex;
-  flex-direction: row;
+.Title_Welcome {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 45px;
+  border: none;
+  font-size: 140px;
+  font-family: Blacksword;
+  color: rgba(255,255,255,1);
+  text-decoration: normal;
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 10px rgba(255,255,255,0.1) , 0 0 20px rgba(255,255,255,0.1) , 0 0 30px rgba(255,255,255,0.1) , 0 0 5px #ffe603f3 , 0 0 5px #ffe603f3 , 0 0 30px #ffe603f3 , 0 0 0px #ffe603f3 ;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+.Title_Welcome:hover {
+  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 1px #ffe603f3 , 0 0 10px #ffe603f3  , 0 0 30px #ffe603f3  , 0 0 30px #ffe603f3 , 0 0 10px #ffe603f3   ;
+}
+
+ 
 .btn-div{
   display: flex;
   flex-direction: row;
@@ -14,29 +32,36 @@
   align-content: center;
 }
 .btn-enter {
-  width: 50px;
-  padding: 10px 10px 10px 10px;  
- 
-  color: rgb(235, 178, 34);
-  border-radius: 5px;
-  border: 1px solid;
-  background-color: rgb(20, 20, 20);
-}
-.btn-enter:hover { 
-  border-radius: 5px;
-  border-style: solid;
-  color: rgb(0, 0, 0);
-  background-color: rgb(235, 178, 34);
-
+   
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
   
-} 
-
-
-.imagen-fondo{
- 
-  width: 1920px;
-  height: 1080px;
-  background-size: cover;
-  background-repeat:no-repeat;
-  background-position: center center;
-}
+    color: rgb(88, 88, 87);
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(235, 178, 34, 0.8);
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .btn-enter:hover {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+  
+    
+    border:none;
+    color:  rgb(235, 178, 34);
+    background-color: rgb(80, 79, 78, 0.4);
+  }
+   .imgL{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:  100vh;
+    
+    background-image: url("../../Media/ss.png");
+    
+  }
+  

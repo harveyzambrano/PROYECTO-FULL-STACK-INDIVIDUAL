@@ -48,7 +48,7 @@ function validate(InputRecipes) {
         errors.steps = 'La descripcion  de los pasos debe tener mas de 3 caractere'
     }
     if( InputRecipes.steps.length > 10 ){
-        errors.steps = "La descripcion  de los pasos debe tener menos de 10 caractere"
+        errors.steps = "La descripcion  de los pasos debe tener menos de 10 caracteres"
     }
     //*-----------------------------------
     if (InputRecipes.diets.length < 1) {

@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar'
 import SearchBar from '../Search/Seach'
 import Card from '../Card/Card'
 import { Paginado } from '../Paginado/Paginado.jsx'
+import s from "../Home/imageHome.module.css"
 import './Home.css'
 import {
   getApi,
@@ -82,25 +83,24 @@ const [name, setName] = useState("");
 
 
   return (
-    <>
+    <div  src='../../Media/fondoHome.jpg' className='imgH' >
       <div >
+       
         <Navbar />
-        <h1 className='Title-Home'> RECIPES</h1>
-         
-            <div>
-              <input  className="search-input"
-                      id="search"
-                      type="text"
-                      placeholder="Search..."
-                      autoComplete="off"
-                      onChange={(e) => handleInputChange(e)} />
-              <button className="button_seach" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
-           </div>
+        
+        <div class="button">Recipes</div>
+        <link async href="https://fonts.googleapis.com/css?family=Warnes" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+        
+        
+           
              
       </div>
 
-      <div className='allselects'>
-            <div>
+      <div  className='allselects'>
+            <div >
+            <button className="button_refresh" onClick={(e) => {handleClick(e)}}>
+            Refresh
+      </button>
               <select className="selects" onChange={(e) => handleByOrder(e)}>
                 <option disabled selected>
                   Order
@@ -129,12 +129,18 @@ const [name, setName] = useState("");
                 </option>
               ))}
             </select>
-            <button className="button_refresh" onClick={(e) => {handleClick(e)}}>
-                Refresh
-              </button>
-
+          
+            <div >
+              <input  className="search-input"
+                      id="search"
+                      type="text"
+                      placeholder="Search..."
+                      autoComplete="off"
+                      onChange={(e) => handleInputChange(e)} />
+              <button className="button_seach" type="submit" onClick={(e) => handleSubmit(e)}> Search </button>
+           </div>
       </div>
-
+      
       <Paginado
         recipesPerPage={recipesPerPage}
         allRecipes={getApiDb.length}
@@ -143,7 +149,7 @@ const [name, setName] = useState("");
   <div  className="card-container-home">
       {RecipesActuales? RecipesActuales.map((e) => {
         return (
-          <div>
+          <div >
            <Link to={'/recipes/' + e.id}  className='font'>
             <Card 
             
@@ -157,8 +163,9 @@ const [name, setName] = useState("");
         )
       }):
       "Recipe not found"}
-      </div>
-    </>
+      </div >
+     
+    </div>
   )
 }
 

@@ -83,58 +83,63 @@ function Form(){
     }
 
     return(
-        <>
+        <div src='../../Media/fondoHome.jpg' className='imgF'>
         <Navbar/>
         
-        <div className="divTodo">            
+              
             <form className="form-total"  onSubmit={(e) => handleSubmit(e)} >
-            <h3>Create Recipes</h3>
-                <div>
-                    <label>Image: </label>
-                    <input className="inputsForm" type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
+            <h3 className="title-form">Create Recipes</h3>
+             
+                <label className="labels">Image </label>
+                <div className="inputsForm" >
+                    <input placeholder="Image" type="text" name="image" value={InputRecipes.image} onChange={(e) => handleChange(e)} /> <br/>
                      {(errors.image && <p className="error">{errors.image}</p>)}   
                 </div>
                 
-                <div>
-                    <label>Name: </label>
-                    <input className="inputsForm" type="text" name="name"   value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
+                <label className="labels">Name </label>
+                <div className="inputsForm">
+                    <input placeholder="Name" type="text" name="name"   value={InputRecipes.name} onChange={(e) => handleChange(e)} /> <br/>
                     {(errors.name && <p className="error">{errors.name}</p>)}   
                 </div>
-                <div>
-                    <label>Summary: </label>
-                    <input className="inputsForm" type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
+
+                <label className="labels">Summary </label>
+                <div className="inputsForm">                    
+                    <input placeholder="Summary" type="text" name="summary" value={InputRecipes.summary} onChange={(e) => handleChange(e)} /> <br/>
                     {(errors.summary && <p className="error">{errors.summary}</p>)}  
 
                 </div>
                 
-                <div>
-                    <label>Health Score: </label>
-                    <input className="inputsForm" type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
+                <label className="labels">Health Score </label>
+                <div className="inputsForm">
+                    <input placeholder="Healt Score" type="text" name="healthScore" value={InputRecipes.healthScore} onChange={(e) => handleChange(e)} /> <br/> 
                     {(errors.healthScore && <p className="error">{errors.healthScore}</p>)} 
                 </div>   
-            <div>
-                <label>Steps: </label>
-                <input className="inputsForm" type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
-                {(errors.steps && <p className="error">{errors.steps}</p>)} 
-            </div>
+
+                <label className="labels">Steps </label>
+                <div className="inputsForm">
+                     <input placeholder="Steps" type="text" name="steps" value={InputRecipes.steps} onChange={(e) => handleChange(e)} /> <br/>
+                     {(errors.steps && <p className="error">{errors.steps}</p>)} 
+                 </div>
                  
             <div>
-                <label>Diets: </label>
+                <label >Diets </label>
                 <select className="selectsForm" onChange={(e) => handleCheck(e)} >
+                  
                 {dietsRoot.map(i => (
-                    <option value={i.name} key={i.id}>{i.name}</option>        
+                     
+                    <option value={i.name} key={i.id}>{i.name }</option>        
                 ))
                 } 
             </select>
-           {/*  <ul><li>{InputRecipes.diets.map(e => e + " ,")}</li></ul> */}
+          
             {(errors.diets && <p className="error">{errors.diets}</p>)}     
             </div>
-            <button className="create" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+            <button className="button-create" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
 
                 
 
 
-                      
+                   
            </form>
 
            {InputRecipes.diets.map(e => 
@@ -144,9 +149,9 @@ function Form(){
            </div>
            
            )}
- 
-        </div> 
-        </>
+  
+        
+        </div>
     )
 }
 
