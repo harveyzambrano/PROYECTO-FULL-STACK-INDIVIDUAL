@@ -58,7 +58,7 @@ export const byName = (name) => {
       });
     };
   } catch (error) {
-    console.log(error + " >>> In actions/ byName()");
+    console.log(error + " >>> In actions/ byName()");   
   }
 };
 

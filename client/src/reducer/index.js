@@ -34,24 +34,28 @@ export default function rootReducer(state = initialState, action) {
         dietasForm: action.payload,
              
       };
+
+
     case TYPE_DIET:
       const tDietAll = state.tipeDiet;
       const typeD =
         action.payload === "all"
           ? tDietAll
-         /*  : tDietAll.filter((e) => e.dietsApi.includes(action.payload)); */
         : tDietAll.filter((e) => e.dietsApi? e.dietsApi.includes(action.payload): e.diets.find(i => i.name === action.payload)) 
       return {
         ...state,
         recipes: typeD,
       };
-    case BY_NAME:
-      /*const nameRecipe = state.name;
-       const nReci = nameRecipe.filter((e) => e.name === action.payload); */
+
+
+    case BY_NAME:      
       return {
         ...state,
         recipes: action.payload,
       };
+
+
+
     case BY_ORDER:
       const orderRecipes =
         action.payload === "Asc"
@@ -62,8 +66,7 @@ export default function rootReducer(state = initialState, action) {
         recipes: orderRecipes,
       };
     case BY_SCORE:
-      const orderScore =
-        action.payload === "Max"
+      const orderScore = action.payload === "Max"
           ? state.recipes.sort((a, b) =>
               a.healthScore > b.healthScore ? -1 : 1
             )

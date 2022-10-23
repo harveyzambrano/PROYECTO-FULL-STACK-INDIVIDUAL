@@ -138,18 +138,27 @@ function Form(){
 
                 
 
-
+        
+  
                    
            </form>
-
-           {InputRecipes.diets.map(e => 
-           <div>
-                <p>{e}</p>
-                <button key={e.id} onClick={() => handleDelete(e)}>x</button>
+        <div className="dietasSelect">
+            {InputRecipes.diets.map(e => 
+           <div className="divDelete">
+            
+            <div>
+                <button className="buttonX" key={e.id} onClick={() => handleDelete(e)}>X</button>
+            </div>
+                
+             <div>
+                <h4>{e}</h4>  
+            </div>  
+               
            </div>
            
-           )}
-  
+           )} 
+        </div>
+         
         
         </div>
     )

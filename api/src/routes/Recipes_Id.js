@@ -7,8 +7,18 @@ const router = Router();
 router.get("/:id", async (req, res) => {
   try {
     const  id = req.params.id;
-    const ById = await getRecipesId(id);
-    res.status(200).send(ById)
+    
+    
+    if (id) {
+      const ById = await getRecipesId(id);
+      if (ById) {
+        res.status(200).send(ById)        
+      }else{
+        res.status(404).send("No existe id")
+      }
+    }
+
+    
   } catch (error) {
     console.log(error + " >>> In router/Recipe_Id.js");
   }

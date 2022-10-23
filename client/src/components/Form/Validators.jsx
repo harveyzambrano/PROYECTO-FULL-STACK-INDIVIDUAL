@@ -54,7 +54,10 @@ function validate(InputRecipes) {
     if (InputRecipes.diets.length < 1) {
         errors.diets = "Seleccione una Dieta"
     } 
-    
+    //*------------SEARCH------------------
+    if (InputRecipes.name.length < 1) {
+        errors.name = "No existe Receta"
+    } 
 
     return errors;
 } 

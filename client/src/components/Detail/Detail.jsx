@@ -15,6 +15,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getDetail(id))
+    
     return () => {
       dispatch(clear())
     }
@@ -28,7 +29,10 @@ export default function Detail() {
           <div className="detail-container-imagen">
             <h1 className='Detalle-Detalle'>Detail</h1>
             <h2 className="detail-title">{recipe.name}</h2>
-            <img className="imagen-Detail" src={recipe.image} />
+            <div >
+              <img className="img-Detail" src={recipe.image} />
+            </div>
+            
 
             <div className='scores'>
               

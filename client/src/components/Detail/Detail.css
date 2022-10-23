@@ -1,3 +1,9 @@
+.img-Detail {  
+  border-radius: 10px;
+  width: 600px;
+  height: 400px;
+  filter: brightness(70%);
+}
 .detail-container-imagen{
   
   display: inline-flex;
@@ -68,12 +74,7 @@
   border-radius: 4px;
   color: rgb(20, 20, 20);
 }
-.image-Detail {  
-  
-  width: 100%;
-  height: 250px;
-  filter: brightness(70%);
-}
+
  
 .dietcointainer {
   width: 580px;

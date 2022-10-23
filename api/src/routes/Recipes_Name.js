@@ -12,10 +12,9 @@ router.get("/", async (req, res) => {
      const todasRecipe = await DbapiRecipe()
 
     if (name) {
-      let recipeQuery = await todasRecipe.filter((i) =>
-        i.name.toLowerCase().includes(name.toLowerCase())
-      );
-      recipeQuery.length
+      let recipeQuery = await todasRecipe.filter((i) =>i.name.toLowerCase().includes(name.toLowerCase()));
+      
+      recipeQuery.length 
         ? res.send(recipeQuery)
         : res.status(404).send("No esta la receta");
     } else {
@@ -27,3 +26,6 @@ router.get("/", async (req, res) => {
 });
 
 module.exports = router;
+
+
+//filt = dev arr

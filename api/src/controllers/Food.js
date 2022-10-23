@@ -61,9 +61,11 @@ const getRecipesId = async (Id) => {
       .get(
         `https://api.spoonacular.com/recipes/${Id}/information?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
       )
-      .then((i) => {
+      .then(i=> {
         i = i.data;
+
         let obj = {
+
           id: i.id,
           image: i.image,
           name: i.title,
@@ -81,7 +83,8 @@ const getRecipesId = async (Id) => {
     if (res) {
       //Api
       return res;
-    } else {
+    }
+    else{
       //DB
       try {
         const recipe = await Recipe.findByPk(Id, {

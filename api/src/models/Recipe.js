@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        //allowNull: false
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,
@@ -18,15 +18,15 @@ module.exports = (sequelize) => {
       },
       summary: {
         type: DataTypes.TEXT,
-        //allowNull: false,
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
-        //allowNull: false,
+        allowNull: false,
       },
       healthScore: {
         type: DataTypes.FLOAT,
-        //allowNull: false,
+        allowNull: false,
       },
       steps: {
         type: DataTypes.TEXT,

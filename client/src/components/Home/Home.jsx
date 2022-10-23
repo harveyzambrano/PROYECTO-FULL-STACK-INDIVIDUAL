@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar'
 import SearchBar from '../Search/Seach'
 import Card from '../Card/Card'
 import { Paginado } from '../Paginado/Paginado.jsx'
+import { validate } from "../Form/Validators.jsx";
 import s from "../Home/imageHome.module.css"
 import './Home.css'
 import {
@@ -21,13 +22,14 @@ const Food = () => {
   const SelectDietas = useSelector((state) => state.dietasForm)
 
   const [paginaActual, setpaginaActual] = useState(1)
-  const [recipesPerPage] = useState(9)
+  const [recipesPerPage, setRecipesPerPage] = useState(9)
   const inidiceDelUltimoRecipe = paginaActual * recipesPerPage
   const indiceDelPrimerRecipe = inidiceDelUltimoRecipe - recipesPerPage
   const RecipesActuales = getApiDb.slice(
     indiceDelPrimerRecipe,
     inidiceDelUltimoRecipe,
   )
+
 
   const paginado = (pageNumber) => {
     setpaginaActual(pageNumber)
@@ -65,13 +67,20 @@ const Food = () => {
     setpaginaActual(1) 
   }
   
-//*-----
+  const handleBack = (e) => {
+    e.preventDefault()
+    setpaginaActual(paginaActual - 1)
+  }
+  const handleNext = (e) => {
+    e.preventDefault()
+    setpaginaActual(paginaActual + 1)
+  }
+//*-----SEARCH
 const [name, setName] = useState("");
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
-    //setpaginaActual(1)
-  };
+ };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(byName(name));
@@ -141,6 +150,11 @@ const [name, setName] = useState("");
            </div>
       </div>
       
+      
+      <button disabled={paginaActual===1? true: false} onClick={e => handleBack(e)}>Back</button>
+      <button value={paginaActual}>{paginaActual}</button>
+      <button disabled={paginaActual === 15? true: false} onClick={e => handleNext(e)}>Next</button>
+
       <Paginado
         recipesPerPage={recipesPerPage}
         allRecipes={getApiDb.length}
@@ -164,7 +178,7 @@ const [name, setName] = useState("");
       }):
       "Recipe not found"}
       </div >
-     
+        
     </div>
   )
 }
