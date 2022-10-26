@@ -29,8 +29,7 @@ function Form(){
         dispatch(getDietas())
     },[dispatch])
 
-    function handleCheck(e){
-         
+    function handleCheck(e){         
         setInputRecipe({
             ...InputRecipes,
             diets: [...new Set([...InputRecipes.diets,(e.target.value)])]
@@ -38,8 +37,7 @@ function Form(){
         setErrors(validate({
             ...InputRecipes,
             [e.target.name]:e.target.value
-        }))  
-         
+        }))           
     }
 
     function handleChange(e){
@@ -75,7 +73,7 @@ function Form(){
         
     }
     
-    const handleDelete = (e) =>{
+    function handleDelete (e){
         setInputRecipe({
             ...InputRecipes,
             diets: InputRecipes.diets.filter(diet => diet !== e)
@@ -83,7 +81,8 @@ function Form(){
     }
 
     return(
-        <div src='../../Media/fondoHome.jpg' className='imgF'>
+    <div className="TodoForm">
+        <div   className='imgF'>
         <Navbar/>
         
               
@@ -144,23 +143,21 @@ function Form(){
            </form>
         <div className="dietasSelect">
             {InputRecipes.diets.map(e => 
-           <div className="divDelete">
-            
-            <div>
-                <button className="buttonX" key={e.id} onClick={() => handleDelete(e)}>X</button>
-            </div>
-                
-             <div>
-                <h4>{e}</h4>  
-            </div>  
-               
-           </div>
-           
+           <div className="divDelete">           
+                <div>
+                     <button className="buttonX" key={e.id} onClick={() => handleDelete(e)}>X</button>
+                 </div>                
+                 <div>
+                     <h4>{e}</h4>  
+                </div>                
+           </div>           
            )} 
         </div>
-         
+
+         <div className="imagenForm"></div>
         
         </div>
+    </div>
     )
 }
 

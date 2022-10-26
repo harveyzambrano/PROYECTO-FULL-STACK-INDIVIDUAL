@@ -6,7 +6,8 @@
   BY_SCORE,
   GET_DETAILS,
   GET_DIETS,
-  CLEAR
+  CLEAR,
+  DELETE_RECIPE
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -35,18 +36,27 @@ export default function rootReducer(state = initialState, action) {
              
       };
 
+      case DELETE_RECIPE:
+        return{
+          ...state,
+          recipes:action.payload
+        }
 
-    case TYPE_DIET:
-      const tDietAll = state.tipeDiet;
-      const typeD =
-        action.payload === "all"
-          ? tDietAll
-        : tDietAll.filter((e) => e.dietsApi? e.dietsApi.includes(action.payload): e.diets.find(i => i.name === action.payload)) 
-      return {
-        ...state,
-        recipes: typeD,
-      };
-
+    case  TYPE_DIET:
+      const stadoDiets = state.tipeDiet;
+      const filterDiets = action.payload === "all"? stadoDiets : stadoDiets.filter(e => e.dietsApi? e.dietsApi.includes(action.payload): e.diets.find(i => i.name === action.payload))
+    return{
+      ...state,
+      recipes: filterDiets
+    }
+  /* case TYPE_DIET:
+  const tDietAll = state.tipeDiet;
+  const typeD = action.payload === "all"?tDietAll: tDietAll.filter((e) => e.dietsApi? e.dietsApi.includes(action.payload): e.diets.find(i => i.name === action.payload)) 
+  return {
+    ...state,
+    recipes: typeD,
+  };
+ */
 
     case BY_NAME:      
       return {
@@ -57,8 +67,7 @@ export default function rootReducer(state = initialState, action) {
 
 
     case BY_ORDER:
-      const orderRecipes =
-        action.payload === "Asc"
+      const orderRecipes = action.payload === "Asc"
           ? state.recipes.sort((a, b) => (a.name > b.name ? 1 : -1))
           : state.recipes.sort((a, b) => (a.name > b.name ? -1 : 1));
       return {
@@ -94,3 +103,7 @@ export default function rootReducer(state = initialState, action) {
       return state;
   }
 }
+
+
+
+

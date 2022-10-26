@@ -1,4 +1,4 @@
-.title-form  {
+.title-form {
   display: inline-block;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,7 +13,9 @@
   -o-text-overflow: clip;
   text-overflow: clip;
   white-space: pre;
-  text-shadow: 0 0 10px rgba(255,255,255,0.1) , 0 0 5px rgba(255,255,255,0.1) , 0 0 0px rgba(255,255,255,1) , 0 0 5px #ffe603f3 , 0 0 5px #ffe603f3 , 0 0 2px #ffe603f3 , 0 0 2px #ffe603f3 ;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1),
+    0 0 5px rgba(255, 255, 255, 0.1), 0 0 0px rgba(255, 255, 255, 1),
+    0 0 5px #ffe603f3, 0 0 5px #ffe603f3, 0 0 2px #ffe603f3, 0 0 2px #ffe603f3;
   -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -21,36 +23,37 @@
 }
 
 .title-form:hover {
-  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 5px #ffe603f3 , 0 0 5px #ffe603f3  , 0 0 5px #ffe603f3   , 0 0 5px #ffe603f3  , 0 0 5px #ffe603f3  ;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 5px rgba(255, 255, 255, 1),
+    0 0 5px #ffe603f3, 0 0 5px #ffe603f3, 0 0 5px #ffe603f3, 0 0 5px #ffe603f3,
+    0 0 5px #ffe603f3;
 }
-.form-total{   
-    font-weight: bold;
-    color:  rgb(197, 150, 31);      
-    width: 300px;
-    height: auto;
-    padding: 30px 90px 10px 90px;
-    margin: 30px 1px 1px 100px;
-    border: 1px;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: rgb(105, 79, 13);  
-    background-color: rgba(40, 40, 40, 0.6);
-    /* box-shadow: 1px 1px 1px rgb(227, 184, 8);   */
-} 
-.labels{
+.form-total {
+  font-weight: bold;
+  color: rgb(197, 150, 31);
+  width: 300px;
+  height: auto;
+  padding: 30px 90px 10px 90px;
+  margin: 30px 1px 1px 100px;
+  border: 1px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgb(105, 79, 13);
+  background-color: rgba(40, 40, 40, 0.6);
+  /* box-shadow: 1px 1px 1px rgb(227, 184, 8);   */
+}
+.labels {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.inputsForm{
+.inputsForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   color: rgb(235, 178, 34);
-   
 }
-input{
+input {
   margin: 8px;
   height: 35px;
   width: 300px;
@@ -60,44 +63,42 @@ input{
   color: rgb(235, 178, 34);
   background-color: rgb(80, 79, 78);
 }
- 
+
 .button-create {
   width: 80%;
-    height: 50px;
-   margin: 10px 0px 30px 0px;
-  
-    color: rgb(88, 88, 87);
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(235, 178, 34);
-    font-weight: bold;
-    font-size: 18px;
-  }
-  .button-create:hover {
-    width: 80%;
-    height: 50px;
-     margin: 10px 0px 30px 0px;
-    border-radius: 5px;
-    border:none;
-    color:  rgb(235, 178, 34);
-    background-color: rgb(80, 79, 78);
-  }
+  height: 50px;
+  margin: 10px 0px 30px 0px;
 
- 
-.error{
+  color: rgb(88, 88, 87);
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(235, 178, 34);
+  font-weight: bold;
+  font-size: 18px;
+}
+.button-create:hover {
+  width: 80%;
+  height: 50px;
+  margin: 10px 0px 30px 0px;
+  border-radius: 5px;
+  border: none;
+  color: rgb(235, 178, 34);
+  background-color: rgb(80, 79, 78);
+}
+
+.error {
   font-size: 14px;
   margin: 0px 0px 15px;
   font-weight: lighter;
   color: rgb(134, 131, 131);
 }
 
-.imgF{  
-    
-  height:  100vh;  
-  background-image: url("../../Media/ss.png");   
+.imgF {
+  height: 100vh;
+  background-image: url('../../Media/ss.png');
 }
 
-.dietasSelect{
+.dietasSelect {
   margin-top: 5px;
   margin-left: 100px;
   width: 480px;
@@ -105,23 +106,23 @@ input{
   border: 1px;
   border-radius: 10px;
   border-style: solid;
-  border-color: rgb(105, 79, 13);     
+  border-color: rgb(105, 79, 13);
   background-color: rgba(40, 40, 40, 0.6);
 }
-.selectsForm{ 
-    margin: 30px 0px 30px 0px;
-    width: 80%;
-    height: 30px;
-    font-size: 16px;
+.selectsForm {
+  margin: 30px 0px 30px 0px;
+  width: 80%;
+  height: 30px;
+  font-size: 16px;
   color: rgb(235, 179, 36);
-  border: 1px solid rgb(166, 125, 22);;
-  border-radius: 4px;  
-  background-color:rgb(102, 101, 101); 
-}  
+  border: 1px solid rgb(166, 125, 22);
+  border-radius: 4px;
+  background-color: rgb(102, 101, 101);
+}
 
-.divDelete{
+.divDelete {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   align-items: center;
   align-content: center;
   margin: 5px 80px;
@@ -130,23 +131,35 @@ input{
   border-radius: 5px;
   background-color: rgb(88, 88, 87);
 }
-.buttonX{  
-    width: 30px;
-    height: 38px;
-    margin-right: 60px;
-    color: rgb(88, 88, 87);
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(235, 178, 34);
-    font-weight: bold;
-    font-size: 18px;
-  }
-  .buttonX:hover {
-    width: 30px;
-    height: 38px;
-    border-radius: 5px;
-    border:none;
-    color:  rgb(235, 178, 34);
-    background-color: rgb(80, 79, 78);
-  }
+.buttonX {
+  width: 30px;
+  height: 38px;
+  margin-right: 60px;
+  color: rgb(88, 88, 87);
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(235, 178, 34);
+  font-weight: bold;
+  font-size: 18px;
+}
+.buttonX:hover {
+  width: 30px;
+  height: 38px;
+  border-radius: 5px;
+  border: none;
+  color: rgb(235, 178, 34);
+  background-color: rgb(80, 79, 78);
+}
 
+ 
+.imagenForm {
+  
+  margin-left: 650px;
+  margin-top: -800px;
+
+  background-size: cover;
+  height: 60%;
+  width: 30%;
+
+  background-image: url('../../Media/chef.png');
+}

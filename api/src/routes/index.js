@@ -5,6 +5,7 @@ const NameQuery = require("./Recipes_Name.js");
 const IdParam = require("./Recipes_Id.js");
 const recipePost = require("./Recipe_Post");
 const dietTypes = require("./Recipe_Types");
+const deletePost = require("./Recipe_Delete")
 const { Dbapi } = require("../db");
 const { YOUR_API_KEY } = process.env;
 const router = Router();
@@ -62,5 +63,5 @@ router.use("/recipes", NameQuery);
 router.use("/recipes", IdParam);
 router.use("/recipes", recipePost);
 router.use("/diets", dietTypes);
-
+router.use("/recipes",deletePost);
 module.exports = router;

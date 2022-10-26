@@ -9,6 +9,7 @@ import {
   POSTER,
   GET_DIETS,
   CLEAR,
+  DELETE_RECIPE
 } from "./actionTypes";
 
 export const getApi = () => {
@@ -39,6 +40,22 @@ export const getDietas = () => {
   }
 };
 
+export const DeletePost =(id) =>{
+  try {
+     return async (dispatch) => {
+  var borrando = await axios.get("http://localhost:3001/recipes/" + id)
+  return dispatch({
+    type: DELETE_RECIPE,
+    payload:borrando.data,
+  })
+ }
+  } catch (error) {
+    console.log(error + " >>> In actions/ DeletePost()");
+  }
+ 
+}
+
+
 export const typeDiet = (payload) => {
   return {
     type: TYPE_DIET,
@@ -49,9 +66,7 @@ export const typeDiet = (payload) => {
 export const byName = (name) => {
   try {
     return async (dispatch) => {
-      const porNombre = await axios.get(
-        "http://localhost:3001/recipes?name=" + name
-      );
+      const porNombre = await axios.get("http://localhost:3001/recipes?name=" + name);
       dispatch({
         type: BY_NAME,
         payload: porNombre.data,

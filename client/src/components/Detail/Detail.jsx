@@ -42,26 +42,26 @@ export default function Detail() {
               </a>
             </div>
 
-            <a className="a_Diets">Diets</a>
+            <a className="a_Dietas">Diets</a>
             <div className="dietcointainer">
               {recipe.diets
                 ? recipe.diets.map((i) => ' - ' + i.name)
                 : recipe.dietsTypes}
             </div>
 
-            <a className="a_Diets">Dish Types</a>
+            <a className="a_Dietas">Dish Types</a>
             <div className="dietcointainer">
               <a className="dishTypes"> {recipe.dishTypes}</a>
             </div>
           </div>
 
           <div className="detail-container">
-            <a className="a_Diets">Summary</a>
+            <a className="a_Dietas">Summary</a>
             <div className="dietcointainer">
               <p className="summary"> {recipe.summary}</p>
             </div>
 
-            <a className="a_Diets">Steps</a>
+            <a className="a_Dietas">Steps</a>
             <div className="dietcointainer">
               <a> {recipe.steps} </a>
             </div>

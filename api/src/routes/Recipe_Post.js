@@ -16,9 +16,7 @@ router.post("/", async (req, res) => {
       where: {name: diets}
     })
 
-  /* const newFindAll = await Recipe.findAll({
-      include: Diet
-    }) */
+  
 
     recipeCreated.addDiets(DietTypes)
 

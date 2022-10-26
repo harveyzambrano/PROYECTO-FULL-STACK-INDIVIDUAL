@@ -13,7 +13,7 @@ import {
   typeDiet, 
   byOrder,
   byHealthScore,
-  getDietas,byName
+  getDietas,byName, DeletePost
 } from '../../actions/index'
 
 const Food = () => {
@@ -66,7 +66,7 @@ const Food = () => {
     setOrder(e.target.value) 
     setpaginaActual(1) 
   }
-  
+  //*==== Next - Back ====
   const handleBack = (e) => {
     e.preventDefault()
     setpaginaActual(paginaActual - 1)
@@ -75,7 +75,16 @@ const Food = () => {
     e.preventDefault()
     setpaginaActual(paginaActual + 1)
   }
-//*-----SEARCH
+
+  function handleDeletePost(e){
+   /*  e.preventDefault() */
+    dispatch(DeletePost(e.target.value))
+    console.log(e.target.value)
+    setpaginaActual(1)
+  }
+
+
+//*=====SEARCH========
 const [name, setName] = useState("");
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -83,16 +92,21 @@ const [name, setName] = useState("");
  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!getApiDb.find(e => e.name.toLowerCase().startsWith(name.toLowerCase()) === name.toLowerCase().startsWith(name.toLowerCase())) )
+      {
+      alert("The name its not found")
+      document.getElementById("search").value="";
+    }else{
     dispatch(byName(name));
     document.getElementById("search").value = "";
     setpaginaActual(1)
+
+    }
+    
   };
 
-
-
-
   return (
-    <div  src='../../Media/fondoHome.jpg' className='imgH' >
+    <div   className='imgH' >
       <div >
        
         <Navbar />
@@ -151,9 +165,9 @@ const [name, setName] = useState("");
       </div>
       
       
-      <button disabled={paginaActual===1? true: false} onClick={e => handleBack(e)}>Back</button>
+     <button disabled={paginaActual===1? true: false} onClick={e => handleBack(e)}>Back</button>
       <button value={paginaActual}>{paginaActual}</button>
-      <button disabled={paginaActual === 15? true: false} onClick={e => handleNext(e)}>Next</button>
+      <button disabled={paginaActual === 12? true: false} onClick={e => handleNext(e)}>Next</button> 
 
       <Paginado
         recipesPerPage={recipesPerPage}
@@ -164,19 +178,21 @@ const [name, setName] = useState("");
       {RecipesActuales? RecipesActuales.map((e) => {
         return (
           <div >
+
            <Link to={'/recipes/' + e.id}  className='font'>
             <Card 
-            
+
                  name={e.name}
                  image={e.image}  
                  healthScore={e.healthScore}
                  dietsApi={e.dietsApi ? e.dietsApi  + "-" : e.diets.map((i) =>i.name + "- ") }
             />             
-            </Link>
+            </Link>            
+        {/*   <button value={e.id}  onClick={e => handleDeletePost(e)}>DELETE</button> */}
           </div>
         )
       }):
-      "Recipe not found"}
+      "Loading..."}
       </div >
         
     </div>

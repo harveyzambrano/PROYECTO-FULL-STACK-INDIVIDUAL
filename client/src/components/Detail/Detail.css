@@ -55,9 +55,9 @@
 
 }
 
- .a_Diets{
-  font-family: Rubady Game;
-  font-size: 40px;
+ .a_Dietas{
+  /* font-family: Rubady Game; */
+  font-size: 30px;
    
  }
 .detalleAll{
@@ -99,7 +99,7 @@
   align-items: center;
   align-content: center;
 
-  font-size: 45px;
+  font-size: 30px;
 }
 .score-content{
   margin: 20px;
