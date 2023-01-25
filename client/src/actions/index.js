@@ -118,6 +118,7 @@ export const getDetail = (id) => {
     console.log(error + " >>> In actions/ getDetail()");
   }
 };
+
 export const clear = () => {
   return {
     type: CLEAR,

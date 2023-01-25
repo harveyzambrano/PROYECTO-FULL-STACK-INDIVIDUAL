@@ -11,9 +11,7 @@ import SearchBar from "./components/Search/Seach";
 function App() {
   return (
    
-      <div className="App">
-        
-             
+      <div className="App">            
         <Switch>
           <Route exact path='/'     component={LandingPage}/>
           <Route exact path='/recipes' component={Home}/>
