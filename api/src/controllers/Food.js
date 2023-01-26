@@ -3,7 +3,7 @@ const { Recipe, Diet, Dbapi } = require("../db");
 const { YOUR_API_KEY } = process.env;
  
 
-//`https://food-d0a4b-default-rtdb.firebaseio.com/.json`
+
 //`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
 
 //*--------------------------------------------------------------------->

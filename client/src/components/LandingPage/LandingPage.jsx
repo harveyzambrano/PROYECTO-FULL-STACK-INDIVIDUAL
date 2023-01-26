@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'; 
 import "./LandingPage.css"
-import style from "../LandingPage/ladingFondo.module.css"
+//import style from "../LandingPage/ladingFondo.module.css"
 
 export default function LandingPage() {
   return(

@@ -7,6 +7,9 @@ function validate(InputRecipes) {
     if(!RegExpressionUrl.test(InputRecipes.image)){
         errors.image = 'Agregue correctamente la URL'
     }
+    if(InputRecipes.image <1){
+        errors.image = 'Agregue url de Imagen'
+    }
     if(!RegExpressionText.test(InputRecipes.name)){
         errors.name = 'No se permiten números ni caracteres especiales'
     }

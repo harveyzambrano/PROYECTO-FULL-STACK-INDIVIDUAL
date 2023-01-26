@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDetail, getDietas, clear } from '../../actions'
+import { getDetail, clear } from '../../actions'
 import hscore from '../../Media/hscore.png'
 import { useEffect } from 'react'
 import './Detail.css'

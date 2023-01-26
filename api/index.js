@@ -20,6 +20,24 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const {getTypes} = require("./src/controllers/TypeDiets.js")
+const port = process.env.PORT || 3001;
+
+// Syncing all the models at once.
+conn.sync({ force: false }).then(() => {
+  server.listen(port,async () => {
+    await getTypes(); // para cargar los tipos de dietas desde un inicio
+    console.log(`Server raised in port ${port}`); // eslint-disable-line no-console
+  });
+});
+
+
+
+
+
+
+/* const server = require('./src/app.js');
+const { conn } = require('./src/db.js');
+const {getTypes} = require("./src/controllers/TypeDiets.js")
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
@@ -27,4 +45,4 @@ conn.sync({ force: false }).then(() => {
     await getTypes();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
-});
+}); */

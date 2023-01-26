@@ -133,7 +133,7 @@ function Form(){
           
             {(errors.diets && <p className="error">{errors.diets}</p>)}     
             </div>
-            <button className="button-create" type="submit" disabled={ Object.keys(errors).length<1 ? false : true}>Create</button>   
+            <button className="button-create" type="submit" /* disabled={ Object.keys(errors).length<1 ? false : true} */>Create</button>   
 
                 
 

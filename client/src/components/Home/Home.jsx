@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Navbar from '../Navbar/Navbar'
-import SearchBar from '../Search/Seach'
+import Navbar from '../Navbar/Navbar' 
 import Card from '../Card/Card'
-import { Paginado } from '../Paginado/Paginado.jsx'
-import { validate } from "../Form/Validators.jsx";
-import s from "../Home/imageHome.module.css"
+import { Paginado } from '../Paginado/Paginado.jsx' 
 import './Home.css'
 import {
   getApi,

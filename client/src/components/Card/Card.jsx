@@ -1,6 +1,6 @@
 import React from "react";
 import hscore from "../../Media/hscore.png"
-import s from "../Card/imageCard.module.css"
+//import s from "../Card/imageCard.module.css"
 import './Card.css'
 
 
